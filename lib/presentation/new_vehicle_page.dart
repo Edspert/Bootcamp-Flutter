@@ -12,12 +12,17 @@ class NewVehiclePage extends GetView<VehicleController> {
       appBar: AppBar(title: Text('hello'),),
       body: Column(
         children: [
+          /// TODO: obx menggunakan controller dari GetView<VehicleController>
+          /// bisa juga melalui controller dari Get.find();
+          /// dan di dalam controllernya mempunyai variable observable .obs
           Expanded(child: Obx(() =>
               ListView.builder(
                   itemCount: controller.vehicle.length,
                   itemBuilder: (context, index) {
                     return Container(child: Text(controller.vehicle[index].name as String),);
                   }),),),
+          /// TODO: GetBuilder dapat menginstance controller baru,
+          /// dan di dalam controllernya tidak bersifat observable, sehingga harus menggunakan update() di dalam controllernya
           Expanded(child: GetBuilder<FilmController>(
             init: FilmController(),
             builder: (controllerFilm) {
@@ -27,6 +32,9 @@ class NewVehiclePage extends GetView<VehicleController> {
                   return Container(child: Text(controllerFilm.films[index].id as String),);
                 });
           },)),
+          /// TODO: GetX dapat menginstance controller baru,
+          /// dan di dalam controllernya bersifat observable, sehingga memiliki behaviour sama seperti obx
+          /// dengan kelebihan bisa di panggil di class lain yang membutuhkan controller tersebut
           Expanded(child: GetX<NewFilmController>(
             init: NewFilmController(),
             builder: (controllerFilms) {
