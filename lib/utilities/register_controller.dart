@@ -1,12 +1,13 @@
 import 'package:get/get.dart';
-import 'package:test_edspert/controller/film_controller.dart';
-import 'package:test_edspert/controller/vehicle_controller.dart';
+import 'package:test_edspert/controller/home_page_controller.dart';
 
 class RegisterController {
+  /// bertindak sebagai singleton
   RegisterController._();
 
   static void init() {
-    Get.lazyPut<VehicleController>(() => VehicleController());
-    Get.lazyPut<FilmController>(() => FilmController());
+    /// TODO: lazy put akan di instance pada saat variable atau TypeController di panggil
+    /// put akan langsung menginstance variable dari awal
+    Get.lazyPut<HomePageController>(() => HomePageController());
   }
 }
