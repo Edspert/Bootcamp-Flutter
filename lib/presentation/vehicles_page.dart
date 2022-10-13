@@ -9,6 +9,8 @@ import 'package:test_edspert/utilities/app_string.dart';
 import 'package:test_edspert/utilities/enum.dart';
 
 class VehiclePage extends StatefulWidget {
+  /// TODO: ini adalah parameter yang dibutuhkan di page ini
+  /// biasanya di supply dari page sebelumnya
   final ApiType type;
 
   const VehiclePage({Key? key, required this.type}) : super(key: key);
@@ -24,6 +26,7 @@ class _VehiclePageState extends State<VehiclePage> {
       appBar: AppBar(
         title: Text(widget.type.name),
       ),
+      /// TODO: contoh pemanggilan API atau Future menggunakan FutureBuilder
       body: FutureBuilder(
         future: _future(),
         builder: (context, snapshot) {
@@ -51,6 +54,7 @@ class _VehiclePageState extends State<VehiclePage> {
   }
 
   Widget _buildList(List data) {
+    /// TODO: menampilkan list dari data yang diberikan
     return ListView.separated(
       itemCount: data.length,
       itemBuilder: (context, index) => _vehicleItem(data[index]),
@@ -59,6 +63,7 @@ class _VehiclePageState extends State<VehiclePage> {
   }
 
   Widget _vehicleItem(Object item) {
+    /// TODO: menampilkan single item dari list
     if (item is VehicleResponseQT) {
       return Padding(
         padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
@@ -117,6 +122,8 @@ class _VehiclePageState extends State<VehiclePage> {
   }
 
   Future _future() {
+    /// TODO: contoh pemanggilan api dengan memanfaatkan switch case dari parameter page sebelumnya
+    /// supaya tidak duplicate sesuatu yang sama untuk latihan ini
     switch (widget.type) {
       case ApiType.dioQT:
         return APIRequest.getVehicleQTQueryParam();

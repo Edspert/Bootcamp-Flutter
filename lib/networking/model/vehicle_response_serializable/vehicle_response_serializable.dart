@@ -1,7 +1,10 @@
 import 'package:json_annotation/json_annotation.dart';
 
+/// TODO: part harus sesuai dengan nama file dari class ini
+/// part ini adalah generated class
 part 'vehicle_response_serializable.g.dart';
 
+/// TODO: anotation untuk json serializable dengan perubahan key dari snakecase to camelcase
 @JsonSerializable(fieldRename: FieldRename.snake)
 class VehicleResponseSerializable {
   final String? id;
@@ -26,7 +29,9 @@ class VehicleResponseSerializable {
     this.nama,
   });
 
+  /// TODO : factory yang akan membuat _$VehicleResponseSerializableFromJson di 'vehicle_response_serializable.g.dart';
   factory VehicleResponseSerializable.fromJson(Map<String, dynamic> json) => _$VehicleResponseSerializableFromJson(json);
 
+  /// TODO : factory yang akan membuat _$VehicleResponseSerializableToJson di 'vehicle_response_serializable.g.dart';
   Map<dynamic, dynamic> toJson() => _$VehicleResponseSerializableToJson(this);
 }

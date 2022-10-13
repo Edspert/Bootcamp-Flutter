@@ -5,6 +5,7 @@ import 'package:test_edspert/networking/api_request/chopper/vehicle_service.dart
 import 'package:test_edspert/networking/model/vehicle_response_quicktype.dart';
 import 'package:test_edspert/utilities/app_string.dart';
 
+/// TODO: sample untuk api request menggunakan chopper
 class APIRequestChopper {
   static final _chopper = ChopperClient(
     baseUrl: AppString.baseUrl,

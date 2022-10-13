@@ -6,6 +6,7 @@ import 'package:test_edspert/networking/model/vehicle_response_quicktype.dart';
 import 'package:test_edspert/networking/model/vehicle_response_serializable/vehicle_response_serializable.dart';
 import 'package:test_edspert/utilities/app_string.dart';
 
+/// TODO: sample untuk api request menggunakan http
 class APIRequestHttp {
   APIRequestHttp._();
 
