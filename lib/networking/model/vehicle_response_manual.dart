@@ -19,6 +19,8 @@ class VehicleResponseManual {
     this.url,
   });
 
+  /// TODO: contoh pembuatan model secara manual
+  /// semakin banyak properties semakin lama membuat modelnya
   factory VehicleResponseManual.fromJson(Map<String, dynamic> json) {
     List<String> filmList = [];
     for (var item in json['films']) {

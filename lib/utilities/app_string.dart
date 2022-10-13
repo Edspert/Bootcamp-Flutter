@@ -1,4 +1,5 @@
 class AppString {
+  /// TODO: AppString atau kelas sejenis biasanya digunakan untuk menyimpan constant string
   static const String baseUrl = 'https://ghibliapi.herokuapp.com/';
 
   static const String dioWithQT = 'Dio with QT';

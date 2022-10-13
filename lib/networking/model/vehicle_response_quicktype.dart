@@ -25,6 +25,8 @@ class VehicleResponseQT {
   final List<String>? films;
   final String? url;
 
+  /// TODO: membuat model dengan bantuan dari Quicktype.io
+  /// butuh beberapa penyesuaian tetapi tidak memakan banyak waktu di banding membuat model secara manual
   factory VehicleResponseQT.fromJson(Map<String, dynamic> json) => VehicleResponseQT(
         id: json["id"],
         name: json["name"],

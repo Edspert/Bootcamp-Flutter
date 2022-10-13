@@ -1,17 +1,11 @@
-# test_edspert
+# Bootcamp-Flutter
 
-A new Flutter project.
+Sample project dari penggunaan network plugin di flutter
 
 ## Getting Started
+- Menggunakan flutter versi 3.0.6
+- Untuk membuat generated class diperlukan (build_runner: any di dev_dependencies pubspec.yaml)
+- jangan lupa menambahkan <uses-permission android:name="android.permission.INTERNET"></uses-permission> di android/app/main/AndroidManifest.xml
+- command untuk membuat generated class: flutter pub run build_runner build --delete-conflicting-outputs
+- atau bisa juga menggunakan: flutter pub run build_runner watch --delete-conflicting-outputs
 
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
-
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
-# Bootcamp-Flutter

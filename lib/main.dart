@@ -66,6 +66,8 @@ class _MyHomePageState extends State<MyHomePage> {
     Navigator.push(
       context,
       MaterialPageRoute(
+        /// TODO: cara melempar parameter dari page ini ke page selanjutnya (VehiclePage)
+        /// VehiclePage(type: type) berarti kita akan ke page VehiclePage dengan mengirim data atau parameter type
         builder: (_) => NewVehiclePage(),
       ),
     );
