@@ -14,6 +14,7 @@ dependencies:
   dio: any
   http: any
   json_serializable: any
+  get:
 
 dev_dependencies:
   flutter_test:

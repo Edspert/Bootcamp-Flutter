@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:test_edspert/presentation/new_vehicle_page.dart';
 import 'package:test_edspert/presentation/vehicles_page.dart';
 import 'package:test_edspert/utilities/app_string.dart';
 import 'package:test_edspert/utilities/enum.dart';
+import 'package:get/get.dart';
+import 'package:test_edspert/utilities/register_controller.dart';
 
 void main() {
+  RegisterController.init();
   runApp(const MyApp());
 }
 
@@ -12,7 +16,7 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return GetMaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
         primarySwatch: Colors.blue,
@@ -62,7 +66,7 @@ class _MyHomePageState extends State<MyHomePage> {
     Navigator.push(
       context,
       MaterialPageRoute(
-        builder: (_) => VehiclePage(type: type),
+        builder: (_) => NewVehiclePage(),
       ),
     );
   }

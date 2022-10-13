@@ -9,4 +9,5 @@ abstract class VehicleService extends ChopperService {
 
   @Get()
   Future<Response> getVehicleQT();
+
 }
