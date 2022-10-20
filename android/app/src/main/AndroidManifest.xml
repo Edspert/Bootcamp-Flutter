@@ -1,8 +1,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.test_edspert">
-    <uses-permission android:name="android.permission.INTERNET"></uses-permission>
+    package="id.edspert.elearning">
+
+    <uses-permission android:name="android.permission.INTERNET" />
    <application
-        android:label="test_edspert"
+        android:label="E-Learning"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity

@@ -1,4 +1,4 @@
-package com.example.test_edspert
+package id.edspert.elearning
 
 import io.flutter.embedding.android.FlutterActivity
 
