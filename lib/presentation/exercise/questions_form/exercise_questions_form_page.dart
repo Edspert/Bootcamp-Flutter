@@ -11,23 +11,14 @@ class ExerciseQuestionsFormPage extends StatelessWidget {
     return GetBuilder<ExerciseQuestionsFormController>(
       builder: (controller) {
         List<QuestionListData> questions = controller.questionList;
-
         int activeQuestionIndex = controller.activeQuestionIndex;
-        String activeQuestionId = '';
-        try {
-          activeQuestionId = questions.elementAt(activeQuestionIndex).questionId ?? '';
-        } catch (e) {
-          // Ignore
-        }
-        String selectedAnswer =
-            controller.questionAnswers.firstWhereOrNull((e) => e.questionId == activeQuestionId)?.answer ?? '';
-
-        print('activeQuestionId: $activeQuestionId');
-        print('selectedAnswer: $selectedAnswer');
+        QuestionListData activeQuestion = questions[activeQuestionIndex];
+        String activeQuestionId = controller.activeQuestionId;
+        String selectedAnswer = controller.selectedAnswer;
 
         return Scaffold(
           appBar: AppBar(
-            title: Text('Latihan Soal'),
+            title: const Text('Latihan Soal'),
           ),
           body: questions.isEmpty
               ? const Center(child: CircularProgressIndicator())
@@ -54,9 +45,9 @@ class ExerciseQuestionsFormPage extends StatelessWidget {
                     ),
                     Column(
                       children: [
-                        Text(questions[activeQuestionIndex].questionTitle ?? ''),
+                        Text(activeQuestion.questionTitle ?? ''),
                         RadioListTile(
-                          title: Text(questions[activeQuestionIndex].optionA ?? ''),
+                          title: Text(activeQuestion.optionA ?? ''),
                           value: 'A',
                           groupValue: selectedAnswer,
                           onChanged: (val) {
@@ -66,7 +57,7 @@ class ExerciseQuestionsFormPage extends StatelessWidget {
                           },
                         ),
                         RadioListTile(
-                          title: Text(questions[activeQuestionIndex].optionB ?? ''),
+                          title: Text(activeQuestion.optionB ?? ''),
                           value: 'B',
                           groupValue: selectedAnswer,
                           onChanged: (val) {
@@ -74,7 +65,7 @@ class ExerciseQuestionsFormPage extends StatelessWidget {
                           },
                         ),
                         RadioListTile(
-                          title: Text(questions[activeQuestionIndex].optionC ?? ''),
+                          title: Text(activeQuestion.optionC ?? ''),
                           value: 'C',
                           groupValue: selectedAnswer,
                           onChanged: (val) {
@@ -82,7 +73,7 @@ class ExerciseQuestionsFormPage extends StatelessWidget {
                           },
                         ),
                         RadioListTile(
-                          title: Text(questions[activeQuestionIndex].optionD ?? ''),
+                          title: Text(activeQuestion.optionD ?? ''),
                           value: 'D',
                           groupValue: selectedAnswer,
                           onChanged: (val) {
@@ -90,7 +81,7 @@ class ExerciseQuestionsFormPage extends StatelessWidget {
                           },
                         ),
                         RadioListTile(
-                          title: Text(questions[activeQuestionIndex].optionD ?? ''),
+                          title: Text(activeQuestion.optionD ?? ''),
                           value: 'E',
                           groupValue: selectedAnswer,
                           onChanged: (val) {
@@ -99,12 +90,20 @@ class ExerciseQuestionsFormPage extends StatelessWidget {
                         ),
                       ],
                     ),
-                    ElevatedButton(
-                      onPressed: () {
-                        controller.navigateToQuestionIndex(activeQuestionIndex + 1);
-                      },
-                      child: Text('Selanjutnya'),
-                    ),
+                    if (activeQuestionIndex < 10)
+                      ElevatedButton(
+                        onPressed: () {
+                          controller.navigateToQuestionIndex(activeQuestionIndex + 1);
+                        },
+                        child: const Text('Selanjutnya'),
+                      )
+                    else
+                      ElevatedButton(
+                        onPressed: () {
+                          controller.submitAnswers();
+                        },
+                        child: const Text('Kumpulin'),
+                      ),
                   ],
                 ),
         );

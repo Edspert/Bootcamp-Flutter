@@ -39,22 +39,28 @@ class ExerciseQuestionsFormController extends GetxController {
   /// Answers
   List<QuestionAnswer> questionAnswers = [];
   int activeQuestionIndex = 0;
+  String activeQuestionId = '';
+  String selectedAnswer = '';
   bool submitAnswerLoading = false;
 
   void navigateToQuestionIndex(int index) {
     activeQuestionIndex = index;
+    try {
+      activeQuestionId = questionList.elementAt(activeQuestionIndex).questionId ?? '';
+    } catch (e) {
+      // Ignore
+    }
     update();
   }
 
   void updateAnswerToQuestion({required String questionId, required String answer}) {
-    print('updateAnswerToQuestion($questionId): $answer');
-    print('questionAnswers:: $questionAnswers');
     if (questionAnswers.any((e) => e.questionId == questionId)) {
       int indexToUpdate = questionAnswers.indexWhere((e) => e.questionId == questionId);
       questionAnswers[indexToUpdate] = QuestionAnswer(questionId: questionId, answer: answer);
     } else {
       questionAnswers.add(QuestionAnswer(questionId: questionId, answer: answer));
     }
+    selectedAnswer = questionAnswers.firstWhereOrNull((e) => e.questionId == activeQuestionId)?.answer ?? '';
     update();
   }
 
