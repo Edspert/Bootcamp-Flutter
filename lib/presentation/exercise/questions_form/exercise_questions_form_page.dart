@@ -51,8 +51,6 @@ class ExerciseQuestionsFormPage extends StatelessWidget {
                           value: 'A',
                           groupValue: selectedAnswer,
                           onChanged: (val) {
-                            print('Selected A!');
-
                             controller.updateAnswerToQuestion(questionId: activeQuestionId, answer: 'A');
                           },
                         ),
