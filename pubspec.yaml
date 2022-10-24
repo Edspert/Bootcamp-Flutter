@@ -19,6 +19,10 @@ dependencies:
   google_sign_in: ^5.4.2
   flutter_svg: ^1.1.5
   flutter_widget_from_html: ^0.8.5
+  edspert_account:
+    path: ../edspert_account
+  edspert_chat:
+    path: ../edspert_chat
 
 dev_dependencies:
   flutter_test:
