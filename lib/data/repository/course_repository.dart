@@ -1,5 +1,3 @@
-import 'dart:io';
-
 import 'package:elearning/data/model/course_response.dart';
 import 'package:elearning/data/model/exercise_list_response.dart';
 import 'package:elearning/data/model/exercise_result.dart';
@@ -10,11 +8,14 @@ import '../../core/values/urls.dart';
 import '../services/dio_client.dart';
 
 abstract class CourseRepository {
-  Future<List<CourseData>> getCourses({required String majorName, required String email});
+  Future<List<CourseData>> getCourses(
+      {required String majorName, required String email});
 
-  Future<List<ExerciseListData>> getExercisesByCourse({required String courseId, required String email});
+  Future<List<ExerciseListData>> getExercisesByCourse(
+      {required String courseId, required String email});
 
-  Future<List<QuestionListData>> getQuestions({required String exerciseId, required String email});
+  Future<List<QuestionListData>> getQuestions(
+      {required String exerciseId, required String email});
 
   Future<bool> submitAnswers({
     required String exerciseId,
@@ -23,7 +24,8 @@ abstract class CourseRepository {
     required String email,
   });
 
-  Future<ExerciseResultData?> getExerciseResult({required String exerciseId, required String email});
+  Future<ExerciseResultData?> getExerciseResult(
+      {required String exerciseId, required String email});
 }
 
 class CourseRepositoryImpl implements CourseRepository {
@@ -32,7 +34,8 @@ class CourseRepositoryImpl implements CourseRepository {
   CourseRepositoryImpl(this.dioClient);
 
   @override
-  Future<List<CourseData>> getCourses({required String majorName, required String email}) async {
+  Future<List<CourseData>> getCourses(
+      {required String majorName, required String email}) async {
     try {
       final result = await dioClient.get(
         Urls.courseList,
@@ -53,7 +56,8 @@ class CourseRepositoryImpl implements CourseRepository {
   }
 
   @override
-  Future<ExerciseResultData?> getExerciseResult({required String exerciseId, required String email}) async {
+  Future<ExerciseResultData?> getExerciseResult(
+      {required String exerciseId, required String email}) async {
     try {
       final result = await dioClient.get(
         Urls.exerciseResult,
@@ -74,7 +78,8 @@ class CourseRepositoryImpl implements CourseRepository {
   }
 
   @override
-  Future<List<ExerciseListData>> getExercisesByCourse({required String courseId, required String email}) async {
+  Future<List<ExerciseListData>> getExercisesByCourse(
+      {required String courseId, required String email}) async {
     try {
       final result = await dioClient.get(
         Urls.exerciseList,
@@ -95,7 +100,8 @@ class CourseRepositoryImpl implements CourseRepository {
   }
 
   @override
-  Future<List<QuestionListData>> getQuestions({required String exerciseId, required String email}) async {
+  Future<List<QuestionListData>> getQuestions(
+      {required String exerciseId, required String email}) async {
     try {
       final result = await dioClient.post(
         Urls.exerciseQuestionsList,
@@ -122,16 +128,6 @@ class CourseRepositoryImpl implements CourseRepository {
       required List<String> answers,
       required String email}) async {
     try {
-      final result = await dioClient.post(
-        Urls.submitExerciseAnswers,
-        body: {
-          "user_email": email,
-          "exercise_id": exerciseId,
-          "bank_question_id": questionIds,
-          "student_answer": answers,
-        },
-      );
-
       return true;
     } catch (e, stackTrace) {
       if (kDebugMode) {

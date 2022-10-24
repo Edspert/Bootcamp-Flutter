@@ -1,4 +1,3 @@
-import 'package:elearning/data/model/exercise_result.dart';
 import "package:get/get_navigation/src/routes/get_route.dart";
 
 import '../presentation/auth/regist_form/regist_form_binding.dart';

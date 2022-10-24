@@ -1,7 +1,6 @@
 import 'package:elearning/data/model/exercise_result.dart';
 import 'package:elearning/data/model/question_list_response.dart';
 import 'package:elearning/data/repository/course_repository.dart';
-import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../../data/services/firebase_auth_service.dart';

@@ -1,8 +1,9 @@
 import 'dart:io';
 
 import 'package:dio/dio.dart';
-import 'package:dio_logger/dio_logger.dart';
-import 'package:meta/meta.dart';
+import 'package:flutter/foundation.dart';
+import 'dart:developer' as developer;
+import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 
 import '../../core/values/urls.dart';
 
@@ -22,11 +23,23 @@ class DioClientImpl implements DioClient {
   void _initApiClient() {
     BaseOptions options = BaseOptions(
       baseUrl: Urls.baseUrl,
-      headers: {"x-api-key": Urls.apiKey, HttpHeaders.contentTypeHeader: "application/json"},
+      headers: {
+        "x-api-key": Urls.apiKey,
+        HttpHeaders.contentTypeHeader: "application/json"
+      },
       responseType: ResponseType.json,
     );
     _dio = Dio(options);
-    _dio.interceptors.add(dioLoggerInterceptor);
+    _dio.interceptors.add(PrettyDioLogger(
+      compact: kDebugMode,
+      error: kDebugMode,
+      logPrint: (value) => developer.log(value.toString()),
+      request: kDebugMode,
+      requestBody: kDebugMode,
+      requestHeader: kDebugMode,
+      responseBody: kDebugMode,
+      responseHeader: kDebugMode,
+    ));
   }
 
   @override
