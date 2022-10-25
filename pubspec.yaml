@@ -20,7 +20,8 @@ dependencies:
   flutter_svg: ^1.1.5
   flutter_widget_from_html: ^0.8.5
   edspert_account:
-    path: ../edspert_account
+    git:
+      url: https://github.com/chandrabezzo/edspert_account
   edspert_chat:
     path: ../edspert_chat
 

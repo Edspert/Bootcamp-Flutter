@@ -2,6 +2,8 @@ import 'package:edspert_account/presentation/get/edit_profile_binding.dart';
 import 'package:edspert_account/presentation/get/profile_binding.dart';
 import 'package:edspert_account/presentation/pages/edit_profile_page.dart';
 import 'package:edspert_chat/presentation/get/discussion_binding.dart';
+import 'package:elearning/presentation/account/edspert_edit_profile_binding.dart';
+import 'package:elearning/presentation/account/edspert_edit_profile_page.dart';
 import "package:get/get_navigation/src/routes/get_route.dart";
 
 import '../presentation/auth/regist_form/regist_form_binding.dart';
@@ -66,8 +68,8 @@ class Pages {
     ),
     GetPage(
       name: EditProfilePage.routeName,
-      page: () => const EditProfilePage(),
-      binding: EditProfileBinding(),
+      page: () => const EdspertEditProfilePage(),
+      binding: EdspertEditProfileBinding(),
     ),
   ];
 }
