@@ -17,8 +17,7 @@ class LoginPage extends StatelessWidget {
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.all(32),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
+          child: ListView(
             children: [
               const Text(
                 'Login',

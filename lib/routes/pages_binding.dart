@@ -1,3 +1,7 @@
+import 'package:edspert_account/presentation/get/edit_profile_binding.dart';
+import 'package:edspert_account/presentation/get/profile_binding.dart';
+import 'package:edspert_account/presentation/pages/edit_profile_page.dart';
+import 'package:edspert_chat/presentation/get/discussion_binding.dart';
 import "package:get/get_navigation/src/routes/get_route.dart";
 
 import '../presentation/auth/regist_form/regist_form_binding.dart';
@@ -19,11 +23,30 @@ import 'routes.dart';
 
 class Pages {
   static final pages = [
-    GetPage(name: Routes.splash, page: () => const SplashPage(), binding: SplashBinding()),
-    GetPage(name: Routes.login, page: () => const LoginPage(), binding: LoginBinding()),
-    GetPage(name: Routes.dashboard, page: () => const DashboardPage(), binding: DashboardBinding()),
-    GetPage(name: Routes.registerForm, page: () => const RegistFormPage(), binding: RegistFormBinding()),
-    GetPage(name: Routes.courseList, page: () => const CourseListPage(), binding: CourseListBinding()),
+    GetPage(
+        name: Routes.splash,
+        page: () => const SplashPage(),
+        binding: SplashBinding()),
+    GetPage(
+        name: Routes.login,
+        page: () => const LoginPage(),
+        binding: LoginBinding()),
+    GetPage(
+        name: Routes.dashboard,
+        page: () => const DashboardPage(),
+        bindings: [
+          DashboardBinding(),
+          DiscussionBinding(),
+          ProfileBinding(),
+        ]),
+    GetPage(
+        name: Routes.registerForm,
+        page: () => const RegistFormPage(),
+        binding: RegistFormBinding()),
+    GetPage(
+        name: Routes.courseList,
+        page: () => const CourseListPage(),
+        binding: CourseListBinding()),
     GetPage(
       name: Routes.exerciseList,
       page: () => const ExerciseListPage(),
@@ -40,6 +63,11 @@ class Pages {
       name: Routes.exerciseResult,
       page: () => const ExerciseResultPage(),
       arguments: String,
+    ),
+    GetPage(
+      name: EditProfilePage.routeName,
+      page: () => const EditProfilePage(),
+      binding: EditProfileBinding(),
     ),
   ];
 }

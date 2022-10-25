@@ -1,9 +1,10 @@
+import 'package:edspert_account/presentation/pages/profile_page.dart';
+import 'package:edspert_chat/presentation/pages/discussion_page.dart';
 import 'package:elearning/presentation/dashboard/dashboard_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import 'home/home_page.dart';
-import 'profile/profile_page.dart';
 
 class DashboardPage extends GetView<DashboardController> {
   const DashboardPage({Key? key}) : super(key: key);
@@ -40,7 +41,7 @@ class DashboardPage extends GetView<DashboardController> {
 
   List<Widget> _bodyList() => [
         const HomePage(),
-        const Placeholder(child: Text('Diskusi Soal')),
+        const DiscussionPage(),
         const ProfilePage(),
       ];
 }
