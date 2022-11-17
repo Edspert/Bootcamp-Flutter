@@ -28,11 +28,11 @@ class SplashController extends GetxController {
 
   Future<void> isUserSignedIn() async {
     if (FirebaseAuth.instance.currentUser != null) {
+      await isUserRegistered();
+    } else {
       // User is Not Signed In
       // Navigate to Login Page
       Get.offAllNamed(Routes.login);
-    } else {
-      await isUserRegistered();
     }
   }
 

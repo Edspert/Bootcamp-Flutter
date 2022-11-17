@@ -12,6 +12,7 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    bool isMobile = MediaQuery.of(context).size.shortestSide < 600;
     return ListView(
       children: [
         Container(
@@ -32,5 +33,17 @@ class HomePage extends StatelessWidget {
         ),
       ],
     );
+  }
+
+  Widget _mobileWidget() {
+    return Container();
+  }
+
+  Widget _tabletWidget() {
+    return Container();
+  }
+
+  Widget _landscapeWidget() {
+    return Container();
   }
 }
