@@ -11,7 +11,6 @@ class CourseListPage extends GetView<CourseListController> {
 
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
       appBar: AppBar(
         title: const Text('Mata Pelajaran'),
@@ -21,7 +20,7 @@ class CourseListPage extends GetView<CourseListController> {
           return Future<void>.delayed(const Duration(seconds: 3));
         },
         child: GetBuilder<CourseListController>(
-          builder: (courseController) {
+          builder: (CourseListController courseController) {
             List<CourseData> courses = courseController.courseList;
 
             return ListView.builder(

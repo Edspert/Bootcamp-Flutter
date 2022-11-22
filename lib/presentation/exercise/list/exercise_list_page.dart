@@ -20,25 +20,29 @@ class ExerciseListPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GetBuilder<ExerciseListController>(builder: (controller) {
-      List<ExerciseListData> exercises = controller.exerciseList;
+    return GetBuilder<ExerciseListController>(
+      builder: (ExerciseListController controller) {
+        List<ExerciseListData> exercises = controller.exerciseList;
 
-      return Scaffold(
-        appBar: AppBar(
-          title: Text(controller.courseName),
-        ),
-        body: ListView.builder(
-          itemCount: exercises.length,
-          itemBuilder: (context, index) {
-            return ListTile(
-              title: Text(exercises[index].exerciseTitle ?? ''),
-              onTap: () {
-                Get.toNamed(Routes.exerciseQuestionsForm, arguments: exercises[index].exerciseId);
-              },
-            );
-          },
-        ),
-      );
-    });
+        return Scaffold(
+          appBar: AppBar(
+            title: Text(controller.courseName),
+          ),
+          body: controller.isExerciseListLoading
+              ? const Center(child: CircularProgressIndicator())
+              : ListView.builder(
+                  itemCount: exercises.length,
+                  itemBuilder: (context, index) {
+                    return ListTile(
+                      title: Text(exercises[index].exerciseTitle ?? ''),
+                      onTap: () {
+                        Get.toNamed(Routes.exerciseQuestionsForm, arguments: exercises[index].exerciseId);
+                      },
+                    );
+                  },
+                ),
+        );
+      },
+    );
   }
 }

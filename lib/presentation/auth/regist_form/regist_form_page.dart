@@ -109,7 +109,7 @@ class _RegistFormPageState extends State<RegistFormPage> {
               String email = _nameTextController.text;
               print('EMAIL: ${email} $kelas');
 
-              Get.offAllNamed(Routes.dashboard);
+              // TODO: call
             },
             child: Text('REGISTER'),
           ),

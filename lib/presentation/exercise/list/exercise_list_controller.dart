@@ -29,12 +29,17 @@ class ExerciseListController extends GetxController {
   }
 
   List<ExerciseListData> exerciseList = [];
+  bool isExerciseListLoading = false;
 
   Future<void> getExercises() async {
+    isExerciseListLoading = true;
+    update();
+
     String? email = firebaseAuthService.getCurrentSignedInUserEmail();
     if (email != null) {
       List<ExerciseListData> result = await courseRepository.getExercisesByCourse(courseId: courseId, email: email);
       exerciseList = result;
+      isExerciseListLoading = false;
       update();
     }
   }

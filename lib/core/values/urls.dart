@@ -1,7 +1,7 @@
 class Urls {
   static const String apiKey = '18be70c0-4e4d-44ff-a475-50c51ece99a0';
 
-  static const String baseUrl = 'https://ekskul.id/api';
+  static const String baseUrl = 'https://edspert.widyaedu.com';
 
   static const String banners = '/event/list';
 

@@ -27,7 +27,7 @@ class _HomeCoursesWidgetState extends State<HomeCoursesWidget> {
         List<CourseData> courses = controller.courseList;
         return Column(
           children: [
-            if (courses.length > 3)
+            if (courses.length > 5)
               TextButton(
                 child: const Text('Lihat Semua'),
                 onPressed: () {
@@ -36,15 +36,18 @@ class _HomeCoursesWidgetState extends State<HomeCoursesWidget> {
               ),
             ListView.builder(
               shrinkWrap: true,
-              itemCount: courses.length > 3 ? 3 : courses.length,
+              itemCount: courses.length > 5 ? 5 : courses.length,
               itemBuilder: (context, index) {
                 return ListTile(
                   title: Text(courses[index].courseName ?? ''),
                   onTap: () {
-                    Get.toNamed(Routes.exerciseList, arguments: ExerciseListPageArgs(
-                      courseId: courses[index].courseId!,
-                      courseName: courses[index].courseName ?? '',
-                    ));
+                    Get.toNamed(
+                      Routes.exerciseList,
+                      arguments: ExerciseListPageArgs(
+                        courseId: courses[index].courseId!,
+                        courseName: courses[index].courseName ?? '',
+                      ),
+                    );
                   },
                 );
               },
