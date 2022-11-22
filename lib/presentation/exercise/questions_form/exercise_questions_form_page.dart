@@ -17,7 +17,9 @@ class ExerciseQuestionsFormPage extends StatelessWidget {
         }
         QuestionListData activeQuestion = questions[activeQuestionIndex];
         String activeQuestionId = controller.activeQuestionId;
-        String selectedAnswer = controller.selectedAnswer;
+        String? selectedAnswer = controller.questionAnswers.firstWhereOrNull((e) => e.questionId == activeQuestionId)?.answer;
+
+        print ('questionAnswers: ${controller.questionAnswers.map((e) => '${e.questionId}-${e.answer}')}');
 
         return Scaffold(
           appBar: AppBar(
@@ -44,52 +46,48 @@ class ExerciseQuestionsFormPage extends StatelessWidget {
                   ),
                 ),
               ),
-              Column(
-                children: [
-                  Text(activeQuestion.questionTitle ?? ''),
-                  RadioListTile(
-                    title: Text(activeQuestion.optionA ?? ''),
-                    value: 'A',
-                    groupValue: selectedAnswer,
-                    onChanged: (val) {
-                      controller.updateAnswerToQuestion(questionId: activeQuestionId, answer: 'A');
-                    },
-                  ),
-                  RadioListTile(
-                    title: Text(activeQuestion.optionB ?? ''),
-                    value: 'B',
-                    groupValue: selectedAnswer,
-                    onChanged: (val) {
-                      controller.updateAnswerToQuestion(questionId: activeQuestionId, answer: 'B');
-                    },
-                  ),
-                  RadioListTile(
-                    title: Text(activeQuestion.optionC ?? ''),
-                    value: 'C',
-                    groupValue: selectedAnswer,
-                    onChanged: (val) {
-                      controller.updateAnswerToQuestion(questionId: activeQuestionId, answer: 'C');
-                    },
-                  ),
-                  RadioListTile(
-                    title: Text(activeQuestion.optionD ?? ''),
-                    value: 'D',
-                    groupValue: selectedAnswer,
-                    onChanged: (val) {
-                      controller.updateAnswerToQuestion(questionId: activeQuestionId, answer: 'D');
-                    },
-                  ),
-                  RadioListTile(
-                    title: Text(activeQuestion.optionD ?? ''),
-                    value: 'E',
-                    groupValue: selectedAnswer,
-                    onChanged: (val) {
-                      controller.updateAnswerToQuestion(questionId: activeQuestionId, answer: 'E');
-                    },
-                  ),
-                ],
+              Text(activeQuestion.questionTitle ?? ''),
+              RadioListTile(
+                title: Text(activeQuestion.optionA ?? ''),
+                value: 'A',
+                groupValue: selectedAnswer,
+                onChanged: (val) {
+                  controller.updateAnswerToQuestion(questionId: activeQuestionId, answer: 'A');
+                },
               ),
-              if (activeQuestionIndex < 10)
+              RadioListTile(
+                title: Text(activeQuestion.optionB ?? ''),
+                value: 'B',
+                groupValue: selectedAnswer,
+                onChanged: (val) {
+                  controller.updateAnswerToQuestion(questionId: activeQuestionId, answer: 'B');
+                },
+              ),
+              RadioListTile(
+                title: Text(activeQuestion.optionC ?? ''),
+                value: 'C',
+                groupValue: selectedAnswer,
+                onChanged: (val) {
+                  controller.updateAnswerToQuestion(questionId: activeQuestionId, answer: 'C');
+                },
+              ),
+              RadioListTile(
+                title: Text(activeQuestion.optionD ?? ''),
+                value: 'D',
+                groupValue: selectedAnswer,
+                onChanged: (val) {
+                  controller.updateAnswerToQuestion(questionId: activeQuestionId, answer: 'D');
+                },
+              ),
+              RadioListTile(
+                title: Text(activeQuestion.optionD ?? ''),
+                value: 'E',
+                groupValue: selectedAnswer,
+                onChanged: (val) {
+                  controller.updateAnswerToQuestion(questionId: activeQuestionId, answer: 'E');
+                },
+              ),
+              if (activeQuestionIndex < 9)
                 ElevatedButton(
                   onPressed: () {
                     controller.navigateToQuestionIndex(activeQuestionIndex + 1);
@@ -98,6 +96,9 @@ class ExerciseQuestionsFormPage extends StatelessWidget {
                 )
               else
                 ElevatedButton(
+                  style: ButtonStyle(
+                    backgroundColor: MaterialStateProperty.all(Colors.green)
+                  ),
                   onPressed: () {
                     controller.submitAnswers();
                   },

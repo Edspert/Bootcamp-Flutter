@@ -22,7 +22,10 @@ class DioClientImpl implements DioClient {
   void _initApiClient() {
     BaseOptions options = BaseOptions(
       baseUrl: Urls.baseUrl,
-      headers: {"x-api-key": Urls.apiKey, HttpHeaders.contentTypeHeader: "application/json"},
+      headers: {
+        "x-api-key": Urls.apiKey,
+        HttpHeaders.contentTypeHeader: "application/json",
+      },
       responseType: ResponseType.json,
     );
     _dio = Dio(options);

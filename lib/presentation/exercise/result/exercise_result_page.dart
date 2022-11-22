@@ -10,7 +10,7 @@ class ExerciseResultPage extends GetView<ExerciseResultController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColors.background,
+      backgroundColor: Colors.blue,
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.all(32),

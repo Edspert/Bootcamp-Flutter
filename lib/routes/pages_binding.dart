@@ -5,6 +5,7 @@ import '../presentation/auth/regist_form/regist_form_binding.dart';
 import '../presentation/auth/regist_form/regist_form_page.dart';
 import '../presentation/dashboard/dashboard_binding.dart';
 import '../presentation/dashboard/dashboard_page.dart';
+import '../presentation/exercise/result/exercise_result_binding.dart';
 import '../presentation/splash/splash_binding.dart';
 import '../presentation/splash/splash_page.dart';
 import '../presentation/auth/login/login_binding.dart';
@@ -40,6 +41,7 @@ class Pages {
     GetPage(
       name: Routes.exerciseResult,
       page: () => const ExerciseResultPage(),
+      binding: ExerciseResultBinding(),
       arguments: String,
     ),
   ];

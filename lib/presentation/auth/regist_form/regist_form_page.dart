@@ -109,7 +109,7 @@ class _RegistFormPageState extends State<RegistFormPage> {
               String email = _nameTextController.text;
               print('EMAIL: ${email} $kelas');
 
-              // TODO: call
+              // TODO: call RegistFormController.registerUser()
             },
             child: Text('REGISTER'),
           ),

@@ -32,6 +32,9 @@ class ExerciseQuestionsFormController extends GetxController {
     if (email != null) {
       List<QuestionListData> result = await courseRepository.getQuestions(exerciseId: exerciseId, email: email);
       questionList = result;
+      if (questionList.isNotEmpty) {
+        activeQuestionId = questionList.first.questionId!;
+      }
       update();
     }
   }
@@ -40,7 +43,6 @@ class ExerciseQuestionsFormController extends GetxController {
   List<QuestionAnswer> questionAnswers = [];
   int activeQuestionIndex = 0;
   String activeQuestionId = '';
-  String selectedAnswer = '';
   bool submitAnswerLoading = false;
 
   void navigateToQuestionIndex(int index) {
@@ -58,9 +60,9 @@ class ExerciseQuestionsFormController extends GetxController {
       int indexToUpdate = questionAnswers.indexWhere((e) => e.questionId == questionId);
       questionAnswers[indexToUpdate] = QuestionAnswer(questionId: questionId, answer: answer);
     } else {
+      print('question: $questionId');
       questionAnswers.add(QuestionAnswer(questionId: questionId, answer: answer));
     }
-    selectedAnswer = questionAnswers.firstWhereOrNull((e) => e.questionId == activeQuestionId)?.answer ?? '';
     update();
   }
 
@@ -69,27 +71,34 @@ class ExerciseQuestionsFormController extends GetxController {
     if (email != null) {
       submitAnswerLoading = true;
       update();
-      List<String> questionIds = questionAnswers.map((e) => e.questionId).toList();
-      List<String> answers = questionAnswers.map((e) => e.answer).toList();
 
-      /// Submit Answer API Call
-      bool submitAnswersResult = await courseRepository.submitAnswers(
-        exerciseId: exerciseId,
-        questionIds: questionIds,
-        answers: answers,
-        email: email,
-      );
+      if (questionAnswers.length == 10) {
+        List<String> questionIds = questionAnswers.map((e) => e.questionId).toList();
+        List<String> answers = questionAnswers.map((e) => e.answer).toList();
 
-      if (submitAnswersResult == true) {
-        /// Get Exercise Result API Call
-        ExerciseResultData? exerciseResult =
-            await courseRepository.getExerciseResult(exerciseId: exerciseId, email: email);
-        if (exerciseResult != null) {
-          Get.offNamed(Routes.exerciseResult, arguments: exerciseResult.result?.jumlahScore ?? "0");
+        /// Submit Answer API Call
+        bool submitAnswersResult = await courseRepository.submitAnswers(
+          exerciseId: exerciseId,
+          questionIds: questionIds,
+          answers: answers,
+          email: email,
+        );
+
+        if (submitAnswersResult == true) {
+          /// Get Exercise Result API Call
+          ExerciseResultData? exerciseResult =
+          await courseRepository.getExerciseResult(exerciseId: exerciseId, email: email);
+          if (exerciseResult != null) {
+            Get.offNamed(Routes.exerciseResult, arguments: exerciseResult.result?.jumlahScore ?? "0");
+          }
         }
+        submitAnswerLoading = false;
+        update();
+      } else {
+        print('Not complete...');
+        // TODO: show toast
       }
-      submitAnswerLoading = false;
-      update();
+
     }
   }
 }
