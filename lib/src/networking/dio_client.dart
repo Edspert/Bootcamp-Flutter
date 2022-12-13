@@ -1,16 +1,20 @@
 import 'dart:io';
 
 import 'package:dio/dio.dart';
-import 'package:flutter/foundation.dart';
-import 'dart:developer' as developer;
-import 'package:pretty_dio_logger/pretty_dio_logger.dart';
+import 'package:dio_logger/dio_logger.dart';
 
-import '../../core/values/urls.dart';
+import '../values/urls.dart';
 
 abstract class DioClient {
   Future<dynamic> get(String url, {Map<String, dynamic>? queryParameters});
 
   Future<dynamic> post(String url, {required body});
+
+  Future<dynamic> put(String url, {required body});
+
+  Future<dynamic> delete(String url, {required body});
+
+  Future<dynamic> patch(String url, {required body});
 }
 
 class DioClientImpl implements DioClient {
@@ -24,22 +28,12 @@ class DioClientImpl implements DioClient {
     BaseOptions options = BaseOptions(
       baseUrl: Urls.baseUrl,
       headers: {
-        "x-api-key": Urls.apiKey,
-        HttpHeaders.contentTypeHeader: "application/json"
+        HttpHeaders.contentTypeHeader: "application/json",
       },
       responseType: ResponseType.json,
     );
     _dio = Dio(options);
-    _dio.interceptors.add(PrettyDioLogger(
-      compact: kDebugMode,
-      error: kDebugMode,
-      logPrint: (value) => developer.log(value.toString()),
-      request: kDebugMode,
-      requestBody: kDebugMode,
-      requestHeader: kDebugMode,
-      responseBody: kDebugMode,
-      responseHeader: kDebugMode,
-    ));
+    _dio.interceptors.add(dioLoggerInterceptor);
   }
 
   @override
@@ -76,5 +70,23 @@ class DioClientImpl implements DioClient {
 
       throw Exception(e.message);
     }
+  }
+
+  @override
+  Future delete(String url, {required body}) {
+    // TODO: implement delete
+    throw UnimplementedError();
+  }
+
+  @override
+  Future patch(String url, {required body}) {
+    // TODO: implement patch
+    throw UnimplementedError();
+  }
+
+  @override
+  Future put(String url, {required body}) {
+    // TODO: implement put
+    throw UnimplementedError();
   }
 }

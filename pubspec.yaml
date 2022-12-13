@@ -12,18 +12,7 @@ dependencies:
     sdk: flutter
   cupertino_icons: ^1.0.5
   dio: ^4.0.6
-  pretty_dio_logger: ^1.1.1
-  get: ^4.6.5
-  firebase_core: ^2.1.0
-  firebase_auth: ^4.0.2
-  google_sign_in: ^5.4.2
-  flutter_svg: ^1.1.5
-  flutter_widget_from_html: ^0.8.5
-  edspert_account:
-    git:
-      url: https://github.com/chandrabezzo/edspert_account
-  edspert_chat:
-    path: ../edspert_chat
+  dio_logger: ^4.0.8+8
 
 dev_dependencies:
   flutter_test:
