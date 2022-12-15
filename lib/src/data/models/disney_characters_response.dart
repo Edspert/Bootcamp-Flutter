@@ -28,12 +28,7 @@ class DisneyCharactersResponse {
 
   @override
   String toString() {
-    return 'DisneyCharactersResponse{' +
-        ' count: $count,' +
-        ' totalPages: $totalPages,' +
-        ' nextPage: $nextPage,' +
-        ' data: $data,' +
-        '}';
+    return 'DisneyCharactersResponse{ count: $count, totalPages: $totalPages, nextPage: $nextPage, data: $data,}';
   }
 
   DisneyCharactersResponse copyWith({
@@ -72,12 +67,14 @@ class DisneyCharactersResponse {
 }
 
 class CharacterData {
+  final int id;
   final String name;
   final String imageUrl;
 
 //<editor-fold desc="Data Methods">
 
   const CharacterData({
+    required this.id,
     required this.name,
     required this.imageUrl,
   });
@@ -92,21 +89,12 @@ class CharacterData {
 
   @override
   String toString() {
-    return 'CharacterData{' + ' name: $name,' + ' imageUrl: $imageUrl,' + '}';
-  }
-
-  CharacterData copyWith({
-    String? name,
-    String? imageUrl,
-  }) {
-    return CharacterData(
-      name: name ?? this.name,
-      imageUrl: imageUrl ?? this.imageUrl,
-    );
+    return 'CharacterData{ name: $name, imageUrl: $imageUrl,}';
   }
 
   Map<String, dynamic> toMap() {
     return {
+      '_id': this.id,
       'name': this.name,
       'imageUrl': this.imageUrl,
     };
@@ -114,6 +102,7 @@ class CharacterData {
 
   factory CharacterData.fromMap(Map<String, dynamic> map) {
     return CharacterData(
+      id: map['_id'] as int,
       name: map['name'] as String,
       imageUrl: map['imageUrl'] as String,
     );

@@ -37,7 +37,7 @@ class DisneyRepositoryImpl implements DisneyRepository {
   }
 
   @override
-  Future<List<CharacterData>> getOneCharacter({required String id}) {
+  Future<CharacterData> getOneCharacter({required String id}) {
     // TODO: implement getOneCharacter
     throw UnimplementedError();
   }

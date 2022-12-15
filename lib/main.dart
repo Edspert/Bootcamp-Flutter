@@ -1,9 +1,10 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
-import 'src/presentation/home_page.dart';
-
+import 'src/presentation/home/home_page.dart';
+import 'src/routes/routes.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -15,15 +16,13 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Networking',
+    return GetMaterialApp(
+      title: 'Disney Characters',
       theme: ThemeData(
         primarySwatch: Colors.orange,
       ),
-      initialRoute: '/',
-      routes: {
-        '/': (context) => const HomePage()
-      },
+      initialRoute: Routes.homePage,
+      getPages: Pages.pages,
     );
   }
 }
