@@ -28,6 +28,7 @@ class LoginController extends GetxController {
 
   Future<void> signOut() async {
     await firebaseAuthService.signOut();
+    Get.offAllNamed(Routes.login);
   }
 
   Future<void> isUserRegistered() async {

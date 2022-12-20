@@ -20,7 +20,10 @@ class HomeController extends GetxController {
   Future<void> getCourses() async {
     String? email = firebaseAuthService.getCurrentSignedInUserEmail();
     if (email != null) {
-      List<CourseData> result = await courseRepository.getCourses(majorName: majorName, email: email);
+      List<CourseData> result = await courseRepository.getCourses(
+        majorName: majorName,
+        email: email,
+      );
       courseList = result;
       update();
     }

@@ -3,15 +3,8 @@ import 'package:flutter/material.dart';
 import '../../core/values/colors.dart';
 import '../../core/values/images.dart';
 
-class SplashPage extends StatefulWidget {
+class SplashPage extends StatelessWidget {
   const SplashPage({Key? key}) : super(key: key);
-
-  @override
-  State<SplashPage> createState() => _SplashPageState();
-}
-
-class _SplashPageState extends State<SplashPage> {
-  TextEditingController emailTextController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
