@@ -11,7 +11,6 @@ class ExerciseListController extends GetxController {
 
   ExerciseListController(this.courseRepository, this.firebaseAuthService);
 
-  // Currently set to static
   late String courseId;
   late String courseName;
 
@@ -39,6 +38,9 @@ class ExerciseListController extends GetxController {
     if (email != null) {
       List<ExerciseListData> result = await courseRepository.getExercisesByCourse(courseId: courseId, email: email);
       exerciseList = result;
+      isExerciseListLoading = false;
+      update();
+    } else {
       isExerciseListLoading = false;
       update();
     }

@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import '../../../data/model/exercise_list_response.dart';
 import '../../../routes/routes.dart';
 
+/// Arguments untuk dibawa saat pindah/navigate ke halaman ExerciseListPage
 class ExerciseListPageArgs {
   final String courseId;
   final String courseName;
@@ -30,14 +31,23 @@ class ExerciseListPage extends StatelessWidget {
           ),
           body: controller.isExerciseListLoading
               ? const Center(child: CircularProgressIndicator())
-              : ListView.builder(
+              : GridView.builder(
+                  padding: const EdgeInsets.all(20),
+                  gridDelegate:  SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: MediaQuery.of(context).size.width >= 600 ? 3 : 2,
+                    childAspectRatio: 153 / 96,
+                    crossAxisSpacing: 14,
+                    mainAxisSpacing: 12,
+                  ),
                   itemCount: exercises.length,
                   itemBuilder: (context, index) {
-                    return ListTile(
-                      title: Text(exercises[index].exerciseTitle ?? ''),
+                    return InkWell(
                       onTap: () {
                         Get.toNamed(Routes.exerciseQuestionsForm, arguments: exercises[index].exerciseId);
                       },
+                      child: Center(
+                        child: Text(exercises[index].exerciseTitle ?? ''),
+                      ),
                     );
                   },
                 ),

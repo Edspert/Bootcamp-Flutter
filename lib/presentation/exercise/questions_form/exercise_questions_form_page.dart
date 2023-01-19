@@ -17,9 +17,10 @@ class ExerciseQuestionsFormPage extends StatelessWidget {
         }
         QuestionListData activeQuestion = questions[activeQuestionIndex];
         String activeQuestionId = controller.activeQuestionId;
-        String? selectedAnswer = controller.questionAnswers.firstWhereOrNull((e) => e.questionId == activeQuestionId)?.answer;
+        String? selectedAnswer =
+            controller.questionAnswers.firstWhereOrNull((e) => e.questionId == activeQuestionId)?.answer;
 
-        print ('questionAnswers: ${controller.questionAnswers.map((e) => '${e.questionId}-${e.answer}')}');
+        print('questionAnswers: ${controller.questionAnswers.map((e) => '${e.questionId}-${e.answer}')}');
 
         return Scaffold(
           appBar: AppBar(
@@ -27,6 +28,7 @@ class ExerciseQuestionsFormPage extends StatelessWidget {
           ),
           body: ListView(
             children: [
+              // Question Number Horizontal ListView
               SizedBox(
                 height: 100,
                 child: ListView.builder(
@@ -46,7 +48,11 @@ class ExerciseQuestionsFormPage extends StatelessWidget {
                   ),
                 ),
               ),
+
+              // Judul/Pertanyaan Soal
               Text(activeQuestion.questionTitle ?? ''),
+
+              //
               RadioListTile(
                 title: Text(activeQuestion.optionA ?? ''),
                 value: 'A',
@@ -80,29 +86,65 @@ class ExerciseQuestionsFormPage extends StatelessWidget {
                 },
               ),
               RadioListTile(
-                title: Text(activeQuestion.optionD ?? ''),
+                title: Text(activeQuestion.optionE ?? ''),
                 value: 'E',
                 groupValue: selectedAnswer,
                 onChanged: (val) {
                   controller.updateAnswerToQuestion(questionId: activeQuestionId, answer: 'E');
                 },
               ),
-              if (activeQuestionIndex < 9)
+
+              if (activeQuestionIndex < questions.length - 1)
                 ElevatedButton(
                   onPressed: () {
                     controller.navigateToQuestionIndex(activeQuestionIndex + 1);
                   },
-                  child: const Text('Selanjutnya'),
+                  child: const Text('SELANJUTNYA'),
                 )
               else
                 ElevatedButton(
-                  style: ButtonStyle(
-                    backgroundColor: MaterialStateProperty.all(Colors.green)
-                  ),
+                  style: ButtonStyle(backgroundColor: MaterialStateProperty.all(Colors.green)),
                   onPressed: () {
-                    controller.submitAnswers();
+                    Get.bottomSheet(
+                      Wrap(
+                        children: [
+                          Column(
+                            children: [
+                              const SizedBox(height: 16),
+                              const Text('Kumpulkan latihan soal sekarang?'),
+                              const SizedBox(height: 16),
+                              Row(
+                                children: [
+                                  const SizedBox(width: 32),
+                                  Expanded(
+                                    child: OutlinedButton(
+                                      onPressed: () {
+                                        Get.back();
+                                      },
+                                      child: const Text('Nanti Dulu'),
+                                    ),
+                                  ),
+                                  const SizedBox(width: 32),
+                                  Expanded(
+                                    child: ElevatedButton(
+                                        onPressed: () {
+                                          Get.back();
+                                          controller.submitAnswers();
+                                        },
+                                        child: const Text('Ya')),
+                                  ),
+                                  const SizedBox(width: 32),
+                                ],
+                              ),
+                              const SizedBox(height: 32),
+                            ],
+                          ),
+                        ],
+                      ),
+                      backgroundColor: Colors.white,
+                    );
                   },
-                  child: const Text('Kumpulin'),
+                  child: const Text('KUMPULIN'),
                 ),
             ],
           ),

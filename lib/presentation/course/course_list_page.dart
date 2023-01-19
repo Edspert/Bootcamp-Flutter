@@ -29,11 +29,13 @@ class CourseListPage extends GetView<CourseListController> {
                 return ListTile(
                   title: Text(courses[index].courseName ?? ''),
                   onTap: () {
-                    Get.toNamed(Routes.exerciseList,
-                        arguments: ExerciseListPageArgs(
-                          courseId: courses[index].courseId!,
-                          courseName: courses[index].courseName ?? '',
-                        ));
+                    Get.toNamed(
+                      Routes.exerciseList,
+                      arguments: ExerciseListPageArgs(
+                        courseId: courses[index].courseId!,
+                        courseName: courses[index].courseName ?? '',
+                      ),
+                    );
                   },
                 );
               },

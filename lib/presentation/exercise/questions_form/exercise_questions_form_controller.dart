@@ -27,6 +27,7 @@ class ExerciseQuestionsFormController extends GetxController {
   /// Questions
   List<QuestionListData> questionList = [];
 
+  /// Get Dari API Get Questions
   Future<void> getQuestions() async {
     String? email = firebaseAuthService.getCurrentSignedInUserEmail();
     if (email != null) {
@@ -48,7 +49,7 @@ class ExerciseQuestionsFormController extends GetxController {
   void navigateToQuestionIndex(int index) {
     activeQuestionIndex = index;
     try {
-      activeQuestionId = questionList.elementAt(activeQuestionIndex).questionId ?? '';
+      activeQuestionId = questionList[activeQuestionIndex].questionId ?? '';
     } catch (e) {
       // Ignore
     }
@@ -56,8 +57,8 @@ class ExerciseQuestionsFormController extends GetxController {
   }
 
   void updateAnswerToQuestion({required String questionId, required String answer}) {
-    if (questionAnswers.any((e) => e.questionId == questionId)) {
-      int indexToUpdate = questionAnswers.indexWhere((e) => e.questionId == questionId);
+    if (questionAnswers.any((element) => element.questionId == questionId)) {
+      int indexToUpdate = questionAnswers.indexWhere((element) => element.questionId == questionId);
       questionAnswers[indexToUpdate] = QuestionAnswer(questionId: questionId, answer: answer);
     } else {
       print('question: $questionId');
@@ -78,10 +79,10 @@ class ExerciseQuestionsFormController extends GetxController {
 
         /// Submit Answer API Call
         bool submitAnswersResult = await courseRepository.submitAnswers(
+          email: email,
           exerciseId: exerciseId,
           questionIds: questionIds,
           answers: answers,
-          email: email,
         );
 
         if (submitAnswersResult == true) {
@@ -95,8 +96,7 @@ class ExerciseQuestionsFormController extends GetxController {
         submitAnswerLoading = false;
         update();
       } else {
-        print('Not complete...');
-        // TODO: show toast
+        Get.snackbar('Semua harus diisi!', 'Periksa kembali jawaban anda.');
       }
 
     }
