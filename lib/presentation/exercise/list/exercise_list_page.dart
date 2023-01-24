@@ -21,6 +21,7 @@ class ExerciseListPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    bool isTablet = MediaQuery.of(context).size.width >= 600;
     return GetBuilder<ExerciseListController>(
       builder: (ExerciseListController controller) {
         List<ExerciseListData> exercises = controller.exerciseList;
@@ -31,26 +32,30 @@ class ExerciseListPage extends StatelessWidget {
           ),
           body: controller.isExerciseListLoading
               ? const Center(child: CircularProgressIndicator())
-              : GridView.builder(
-                  padding: const EdgeInsets.all(20),
-                  gridDelegate:  SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: MediaQuery.of(context).size.width >= 600 ? 3 : 2,
-                    childAspectRatio: 153 / 96,
-                    crossAxisSpacing: 14,
-                    mainAxisSpacing: 12,
-                  ),
-                  itemCount: exercises.length,
-                  itemBuilder: (context, index) {
-                    return InkWell(
-                      onTap: () {
-                        Get.toNamed(Routes.exerciseQuestionsForm, arguments: exercises[index].exerciseId);
-                      },
-                      child: Center(
-                        child: Text(exercises[index].exerciseTitle ?? ''),
+              : exercises.isEmpty
+                  ? Center(
+                      child: Text('Yah, Paket tidak tersedia'),
+                    )
+                  : GridView.builder(
+                      padding: const EdgeInsets.all(20),
+                      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                        crossAxisCount: isTablet ? 3 : 2,
+                        childAspectRatio: 153 / 96,
+                        crossAxisSpacing: 14,
+                        mainAxisSpacing: 12,
                       ),
-                    );
-                  },
-                ),
+                      itemCount: exercises.length,
+                      itemBuilder: (context, index) {
+                        return InkWell(
+                          onTap: () {
+                            Get.toNamed(Routes.exerciseQuestionsForm, arguments: exercises[index].exerciseId);
+                          },
+                          child: Center(
+                            child: Text(exercises[index].exerciseTitle ?? ''),
+                          ),
+                        );
+                      },
+                    ),
         );
       },
     );

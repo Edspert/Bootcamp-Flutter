@@ -11,6 +11,8 @@ class RegistFormBinding implements Bindings {
   void dependencies() {
     Get.lazyPut<DioClient>(() => DioClientImpl());
     Get.lazyPut<AuthRepository>(() => AuthRepositoryImpl(Get.find<DioClient>()));
-    Get.lazyPut(() => RegistFormController(authRepository: Get.find<AuthRepository>()));
+    Get.lazyPut<FirebaseAuthService>(() => FirebaseAuthServiceImpl());
+    Get.lazyPut(() => RegistFormController(
+        authRepository: Get.find<AuthRepository>(), firebaseAuthService: Get.find<FirebaseAuthService>()));
   }
 }

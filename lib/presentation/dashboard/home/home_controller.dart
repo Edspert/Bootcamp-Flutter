@@ -1,4 +1,4 @@
-import 'package:elearning/data/repository/benner_repository.dart';
+import 'package:elearning/data/repository/banner_repository.dart';
 import 'package:elearning/data/repository/course_repository.dart';
 import 'package:elearning/data/services/firebase_auth_service.dart';
 import 'package:get/get.dart';
@@ -16,6 +16,7 @@ class HomeController extends GetxController {
 
   // Currently set to static
   String majorName = 'IPA';
+  int maxHomeCourseCount = 3;
 
   Future<void> getCourses() async {
     String? email = firebaseAuthService.getCurrentSignedInUserEmail();

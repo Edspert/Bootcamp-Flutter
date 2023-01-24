@@ -22,14 +22,14 @@ class _HomeCoursesWidgetState extends State<HomeCoursesWidget> {
 
   @override
   Widget build(BuildContext context) {
-    int maxCourseCount = 3;
-
     return GetBuilder<HomeController>(
       builder: (controller) {
         List<CourseData> courses = controller.courseList;
+
         return Column(
+          crossAxisAlignment: CrossAxisAlignment.end,
           children: [
-            if (courses.length > maxCourseCount)
+            if (courses.length > controller.maxHomeCourseCount)
               TextButton(
                 child: const Text('Lihat Semua'),
                 onPressed: () {
@@ -38,7 +38,9 @@ class _HomeCoursesWidgetState extends State<HomeCoursesWidget> {
               ),
             ListView.builder(
               shrinkWrap: true,
-              itemCount: courses.length > maxCourseCount ? maxCourseCount : courses.length,
+              physics: const NeverScrollableScrollPhysics(),
+              itemCount:
+                  courses.length > controller.maxHomeCourseCount ? controller.maxHomeCourseCount : courses.length,
               itemBuilder: (context, index) {
                 return ListTile(
                   title: Text(courses[index].courseName ?? ''),

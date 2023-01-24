@@ -3,6 +3,9 @@ class Urls {
 
   static const String baseUrl = 'https://edspert.widyaedu.com';
 
+  ///
+  /// Endpoints =====================================================
+  ///
   static const String banners = '/event/list';
 
   static const String users = '/users';

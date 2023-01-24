@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../data/model/user_response.dart';
@@ -28,6 +29,8 @@ class SplashController extends GetxController {
 
   Future<void> isUserSignedIn() async {
     if (FirebaseAuth.instance.currentUser != null) {
+      // User Is Signed In
+      // Check is user registered?
       await isUserRegistered();
     } else {
       // User is Not Signed In

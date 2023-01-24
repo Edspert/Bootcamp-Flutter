@@ -1,0 +1,34 @@
+{
+  "status": 1,
+  "message": "OK",
+  "data": {
+    "exercise": {
+      "exercise_id": "28",
+      "exercise_code": "ES00024",
+      "file_course": "https://firebasestorage.googleapis.com/v0/b/widyaedu-d0df3.appspot.com/o/Materi_Latihan_Soal%2FPBM_UTBK%20EJAAN.pdf?alt=media&token=9f721e8d-ea47-46b3-8557-6504c0f2ef1a",
+      "icon": "https://demo.eduhero.widyaedu.com/assets/images/thumbnail/72f4b8fa8fba287b25db20a7bf488f37.png",
+      "exercise_title": "Huruf Kapital",
+      "exercise_description": "Paket soal bisa dikerjakan",
+      "exercise_instruction": "<p>Pilihlah satu jawaban yang paling tepat</p>",
+      "count_question": "10",
+      "class_fk": "13",
+      "course_fk": "132",
+      "course_content_fk": "397",
+      "sub_course_content_fk": "56",
+      "creator_id": "0",
+      "creator_name": "",
+      "exam_from": "eduhero",
+      "access_type": "free",
+      "exercise_order": "1",
+      "exercise_status": "active",
+      "date_create": "2021-12-21 09:13:58",
+      "date_update": "2021-12-23 15:08:15"
+    },
+    "result": {
+      "jumlah_benar": "3",
+      "jumlah_salah": "7",
+      "jumlah_tidak": "0",
+      "jumlah_score": "30"
+    }
+  }
+}

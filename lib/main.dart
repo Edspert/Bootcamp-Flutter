@@ -23,7 +23,8 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetMaterialApp(
       title: 'E Learning',
-      theme: ThemeData(primaryColor: AppColors.primary),
+      theme: ThemeData(primaryColor: AppColors.primary,
+      fontFamily: ''),
       debugShowCheckedModeBanner: false,
       initialRoute: Routes.splash,
       getPages: Pages.pages,

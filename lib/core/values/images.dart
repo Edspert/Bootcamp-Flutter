@@ -1,3 +1,4 @@
+
 class ImagesAssets {
   static const String imageLogoWhitePng = 'assets/images/img_edspert_logo_white.png';
   static const String imageIllustrationLoginSvg = 'assets/images/img_illu_auth.svg';

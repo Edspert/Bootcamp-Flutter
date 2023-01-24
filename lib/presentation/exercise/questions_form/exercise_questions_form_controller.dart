@@ -4,6 +4,7 @@ import 'package:elearning/data/repository/course_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../../../data/model/question_answer.dart';
 import '../../../data/services/firebase_auth_service.dart';
 import '../../../routes/routes.dart';
 
@@ -41,7 +42,7 @@ class ExerciseQuestionsFormController extends GetxController {
   }
 
   /// Answers
-  List<QuestionAnswer> questionAnswers = [];
+  List<QuestionAnswer> questionAnswers = List.empty(growable: true);
   int activeQuestionIndex = 0;
   String activeQuestionId = '';
   bool submitAnswerLoading = false;
@@ -88,7 +89,7 @@ class ExerciseQuestionsFormController extends GetxController {
         if (submitAnswersResult == true) {
           /// Get Exercise Result API Call
           ExerciseResultData? exerciseResult =
-          await courseRepository.getExerciseResult(exerciseId: exerciseId, email: email);
+              await courseRepository.getExerciseResult(exerciseId: exerciseId, email: email);
           if (exerciseResult != null) {
             Get.offNamed(Routes.exerciseResult, arguments: exerciseResult.result?.jumlahScore ?? "0");
           }
@@ -96,21 +97,8 @@ class ExerciseQuestionsFormController extends GetxController {
         submitAnswerLoading = false;
         update();
       } else {
-        Get.snackbar('Semua harus diisi!', 'Periksa kembali jawaban anda.');
+        Get.snackbar('Semua harus diisi!', 'Periksa kembali jawaban anda.', snackPosition: SnackPosition.BOTTOM);
       }
-
     }
   }
-}
-
-class QuestionAnswer {
-  final String questionId;
-  final String answer;
-
-  @override
-  String toString() {
-    return 'QuestionAnswer{questionId: $questionId, answer: $answer}';
-  }
-
-  QuestionAnswer({required this.questionId, required this.answer});
 }

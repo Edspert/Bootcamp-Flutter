@@ -1,0 +1,42 @@
+{
+  "status": 1,
+  "message": "ok",
+  "data": [
+    {
+      "exercise_id": "28",
+      "exercise_title": "Huruf Kapital",
+      "access_type": "free",
+      "icon": "https://demo.eduhero.widyaedu.com/assets/images/thumbnail/72f4b8fa8fba287b25db20a7bf488f37.png",
+      "exercise_user_status": "done",
+      "jumlah_soal": "10",
+      "jumlah_done": 10
+    },
+    {
+      "exercise_id": "75",
+      "exercise_title": "Tanda Baca",
+      "access_type": "free",
+      "icon": "https://eduhero.widyaedu.com/assets/images/thumbnail/d0f2e9b03ec5ea31565baaae5388945a.png",
+      "exercise_user_status": "on_progress",
+      "jumlah_soal": "10",
+      "jumlah_done": 10
+    },
+    {
+      "exercise_id": "76",
+      "exercise_title": "Konjungsi",
+      "access_type": "free",
+      "icon": "https://eduhero.widyaedu.com/assets/images/thumbnail/1ccb1484c05c17afc1f7e3a110d9f0b4.png",
+      "exercise_user_status": "done",
+      "jumlah_soal": "10",
+      "jumlah_done": 10
+    },
+    {
+      "exercise_id": "77",
+      "exercise_title": "Penulisan Kata",
+      "access_type": "free",
+      "icon": "https://eduhero.widyaedu.com/assets/images/thumbnail/9a3762b0ddc9f743db71c0c3cbdd50d3.png",
+      "exercise_user_status": "on_progress",
+      "jumlah_soal": "10",
+      "jumlah_done": 10
+    }
+  ]
+}

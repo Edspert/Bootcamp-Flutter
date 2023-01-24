@@ -1,4 +1,4 @@
-import 'package:elearning/data/repository/benner_repository.dart';
+import 'package:elearning/data/repository/banner_repository.dart';
 import 'package:elearning/presentation/auth/login/login_controller.dart';
 import 'package:elearning/presentation/course/course_list_controller.dart';
 import 'package:elearning/presentation/dashboard/dashboard_controller.dart';

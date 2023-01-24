@@ -8,25 +8,25 @@ class ExerciseQuestionsFormPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GetBuilder<ExerciseQuestionsFormController>(
-      builder: (controller) {
-        List<QuestionListData> questions = controller.questionList;
-        int activeQuestionIndex = controller.activeQuestionIndex;
-        if (questions.isEmpty) {
-          return const Center(child: CircularProgressIndicator());
-        }
-        QuestionListData activeQuestion = questions[activeQuestionIndex];
-        String activeQuestionId = controller.activeQuestionId;
-        String? selectedAnswer =
-            controller.questionAnswers.firstWhereOrNull((e) => e.questionId == activeQuestionId)?.answer;
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Latihan Soal'),
+      ),
+      body: GetBuilder<ExerciseQuestionsFormController>(
+        builder: (controller) {
+          List<QuestionListData> questions = controller.questionList;
+          int activeQuestionIndex = controller.activeQuestionIndex;
+          if (questions.isEmpty) {
+            return const Center(child: CircularProgressIndicator());
+          }
+          QuestionListData activeQuestion = questions[activeQuestionIndex];
+          String activeQuestionId = controller.activeQuestionId;
+          String? selectedAnswer =
+              controller.questionAnswers.firstWhereOrNull((e) => e.questionId == activeQuestionId)?.answer;
 
-        print('questionAnswers: ${controller.questionAnswers.map((e) => '${e.questionId}-${e.answer}')}');
+          print('questionAnswers: ${controller.questionAnswers.map((e) => '${e.questionId}-${e.answer}')}');
 
-        return Scaffold(
-          appBar: AppBar(
-            title: const Text('Latihan Soal'),
-          ),
-          body: ListView(
+          return ListView(
             children: [
               // Question Number Horizontal ListView
               SizedBox(
@@ -52,7 +52,7 @@ class ExerciseQuestionsFormPage extends StatelessWidget {
               // Judul/Pertanyaan Soal
               Text(activeQuestion.questionTitle ?? ''),
 
-              //
+              // Opsi Jawaban
               RadioListTile(
                 title: Text(activeQuestion.optionA ?? ''),
                 value: 'A',
@@ -147,9 +147,9 @@ class ExerciseQuestionsFormPage extends StatelessWidget {
                   child: const Text('KUMPULIN'),
                 ),
             ],
-          ),
-        );
-      },
+          );
+        },
+      ),
     );
   }
 }

@@ -5,6 +5,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 
 import '../../../core/values/colors.dart';
+import '../../../routes/routes.dart';
 import '../../widgets/signin_google_button.dart';
 
 class LoginPage extends StatelessWidget {
@@ -26,6 +27,7 @@ class LoginPage extends StatelessWidget {
                   color: AppColors.black,
                   fontSize: 20,
                   fontWeight: FontWeight.w600,
+                  fontFamily: '',
                 ),
               ),
               const SizedBox(height: 36),
@@ -33,7 +35,7 @@ class LoginPage extends StatelessWidget {
                 ImagesAssets.imageIllustrationLoginSvg,
                 height: 255,
               ),
-              const SizedBox(height: 60),
+              const SizedBox(height: 40),
               const Text(
                 'Selamat Datang',
                 style: TextStyle(
