@@ -16,8 +16,19 @@ class ExerciseListPageArgs {
   });
 }
 
-class ExerciseListPage extends StatelessWidget {
+class ExerciseListPage extends StatefulWidget {
   const ExerciseListPage({Key? key}) : super(key: key);
+
+  @override
+  State<ExerciseListPage> createState() => _ExerciseListPageState();
+}
+
+class _ExerciseListPageState extends State<ExerciseListPage> {
+  @override
+  void initState() {
+    super.initState();
+    // Call API
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -60,4 +71,6 @@ class ExerciseListPage extends StatelessWidget {
       },
     );
   }
+
+
 }

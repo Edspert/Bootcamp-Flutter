@@ -41,6 +41,7 @@ class SplashController extends GetxController {
 
   Future<void> isUserRegistered() async {
     String? email = firebaseAuthService.getCurrentSignedInUserEmail();
+    // email != null artinya user sudah sign-in
     if (email != null) {
       UserData? userData = await authRepository.getUserByEmail(email: email);
       if (userData != null) {

@@ -14,26 +14,12 @@ class DashboardPage extends GetView<DashboardController> {
       int selectedIndex = controller.selectedNavIndex.value;
       return SafeArea(
         child: Scaffold(
-          body: Stack(
+          body: IndexedStack(
+            index: controller.selectedNavIndex.value,
             children: [
-              _bodyList()[selectedIndex],
-              GetBuilder<DashboardController>(builder: (controller) {
-                bool isOnline = controller.isOnline;
-                if (isOnline) {
-                  return SizedBox();
-                } else {
-                  return Positioned(
-                    left: 0,
-                    right: 0,
-                    top: 0,
-                    child: Container(
-                      padding: const EdgeInsets.all(8),
-                      color: Colors.yellow,
-                      child: Text('No Connection'),
-                    ),
-                  );
-                }
-              })
+              const HomePage(),
+              const Placeholder(child: Text('Diskusi Soal')),
+              const ProfilePage(),
             ],
           ),
           bottomNavigationBar: BottomNavigationBar(

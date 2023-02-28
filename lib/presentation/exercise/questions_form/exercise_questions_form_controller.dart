@@ -22,7 +22,9 @@ class ExerciseQuestionsFormController extends GetxController {
     super.onInit();
 
     exerciseId = Get.arguments as String;
-    getQuestions();
+    Future.delayed(Duration(milliseconds: 100)).then((value) async {
+      await getQuestions();
+    });
   }
 
   /// Questions
@@ -35,9 +37,27 @@ class ExerciseQuestionsFormController extends GetxController {
       List<QuestionListData> result = await courseRepository.getQuestions(exerciseId: exerciseId, email: email);
       questionList = result;
       if (questionList.isNotEmpty) {
+        // Init jawaban yang sudah diisi
+        _initStudentAnsweredQuestions();
+
+        // Set soal aktif ke nomor 1
         activeQuestionId = questionList.first.questionId!;
       }
       update();
+    }
+  }
+
+  void _initStudentAnsweredQuestions() {
+    for (QuestionListData data in questionList) {
+      if (data.studentAnswer != null) {
+        if (questionAnswers.any((element) => element.questionId == data.questionId)) {
+          int indexToUpdate = questionAnswers.indexWhere((element) => element.questionId == data.questionId);
+          questionAnswers[indexToUpdate] = QuestionAnswer(questionId: data.questionId!, answer: data.studentAnswer!);
+        } else {
+          questionAnswers.add(QuestionAnswer(questionId: data.questionId!, answer: data.studentAnswer!));
+        }
+        update();
+      }
     }
   }
 

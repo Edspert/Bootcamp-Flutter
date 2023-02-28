@@ -17,6 +17,7 @@ class RegistFormPage extends StatefulWidget {
 
 class _RegistFormPageState extends State<RegistFormPage> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+
   final TextEditingController _fullNameTextController = TextEditingController();
   final TextEditingController _schoolNameTextController = TextEditingController();
   String? kelas;
@@ -57,7 +58,7 @@ class _RegistFormPageState extends State<RegistFormPage> {
                     ),
                     hintText: 'Email',
                   ),
-                  // enabled: false,
+                  enabled: false,
                   validator: FormBuilderValidators.compose([
                     FormBuilderValidators.required(),
                     FormBuilderValidators.email(),

@@ -17,6 +17,7 @@ class CourseListPage extends GetView<CourseListController> {
       ),
       body: RefreshIndicator(
         onRefresh: () async {
+          // TODO: Call API getCourses()
           return Future<void>.delayed(const Duration(seconds: 3));
         },
         child: GetBuilder<CourseListController>(

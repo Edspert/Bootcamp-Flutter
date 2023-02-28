@@ -26,6 +26,9 @@ class AuthRepositoryImpl implements AuthRepository {
       );
 
       UserResponse res = UserResponse.fromJson(result);
+      if ((res.message ?? '').contains('user tidak di temukan')) {
+        return null;
+      }
       return res.data;
     } catch (e, stackTrace) {
       if (kDebugMode) {
