@@ -23,8 +23,13 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetMaterialApp(
       title: 'E Learning',
-      theme: ThemeData(primaryColor: AppColors.primary,
-      fontFamily: ''),
+      theme: ThemeData(
+        primaryColor: AppColors.primary,
+        fontFamily: '',
+        appBarTheme: AppBarTheme(
+          backgroundColor: AppColors.primary,
+        ),
+      ),
       debugShowCheckedModeBanner: false,
       initialRoute: Routes.splash,
       getPages: Pages.pages,
@@ -37,8 +42,6 @@ class MyHttpOverrides extends HttpOverrides {
   @override
   HttpClient createHttpClient(SecurityContext? context) {
     return super.createHttpClient(context)
-      ..badCertificateCallback =
-          (X509Certificate cert, String host, int port) => true;
+      ..badCertificateCallback = (X509Certificate cert, String host, int port) => true;
   }
 }
-

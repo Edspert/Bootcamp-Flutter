@@ -23,6 +23,7 @@ dependencies:
   flutter_widget_from_html: ^0.8.5
   connectivity_plus: ^3.0.2
   form_builder_validators: ^8.4.0
+  flutter_widget_from_html_core: ^0.10.0
 
 dev_dependencies:
   flutter_test:

@@ -1,6 +1,8 @@
+import 'package:elearning/core/values/colors.dart';
 import 'package:elearning/data/model/question_list_response.dart';
 import 'package:elearning/presentation/exercise/questions_form/exercise_questions_form_controller.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_widget_from_html/flutter_widget_from_html.dart';
 import 'package:get/get.dart';
 
 class ExerciseQuestionsFormPage extends StatelessWidget {
@@ -11,6 +13,7 @@ class ExerciseQuestionsFormPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Latihan Soal'),
+        centerTitle: true,
       ),
       body: GetBuilder<ExerciseQuestionsFormController>(
         builder: (controller) {
@@ -30,23 +33,39 @@ class ExerciseQuestionsFormPage extends StatelessWidget {
             children: [
               // Question Number Horizontal ListView
               SizedBox(
-                height: 100,
+                height: 50,
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: List.generate(
                     questions.length,
-                    (index) => IconButton(
-                      icon: Text(
-                        '${index + 1}',
-                        style: TextStyle(
-                          fontWeight: index == activeQuestionIndex ? FontWeight.w800 : FontWeight.w400,
-                          color: index == activeQuestionIndex ? Colors.blue : Colors.black,
+                    (index) {
+                      bool isSelected = index == activeQuestionIndex;
+
+                      return InkWell(
+                        onTap: () {
+                          controller.navigateToQuestionIndex(index);
+                        },
+                        child: Container(
+                          padding: EdgeInsets.all(4),
+                          width: 24,
+                          height: 24,
+                          decoration: BoxDecoration(
+                            border: Border.all(
+                              color: AppColors.primary,
+                            ),
+                            color: isSelected ? AppColors.primary : AppColors.white,
+                            borderRadius: BorderRadius.circular(12),
+                          ),
+                          child: Text(
+                            '${index + 1}',
+                            style: TextStyle(
+                              fontWeight: isSelected ? FontWeight.w800 : FontWeight.w400,
+                              color: isSelected ? Colors.white : Colors.black,
+                            ),
+                          ),
                         ),
-                      ),
-                      onPressed: () {
-                        controller.navigateToQuestionIndex(index);
-                      },
-                    ),
+                      );
+                    },
                   ),
                 ),
               ),
@@ -55,7 +74,9 @@ class ExerciseQuestionsFormPage extends StatelessWidget {
                   padding: EdgeInsets.all(18),
                   children: [
                     // Judul/Pertanyaan Soal
-                    Text(activeQuestion.questionTitle ?? ''),
+                    HtmlWidget(
+                      activeQuestion.questionTitle ?? '',
+                    ),
 
                     // Opsi Jawaban
                     RadioListTile(

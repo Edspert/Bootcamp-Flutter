@@ -36,26 +36,34 @@ class _HomeCoursesWidgetState extends State<HomeCoursesWidget> {
                   Get.toNamed(Routes.courseList);
                 },
               ),
-            ListView.builder(
-              shrinkWrap: true,
-              physics: const NeverScrollableScrollPhysics(),
-              itemCount:
-                  courses.length > controller.maxHomeCourseCount ? controller.maxHomeCourseCount : courses.length,
-              itemBuilder: (context, index) {
-                return ListTile(
-                  title: Text(courses[index].courseName ?? ''),
-                  onTap: () {
-                    Get.toNamed(
-                      Routes.exerciseList,
-                      arguments: ExerciseListPageArgs(
-                        courseId: courses[index].courseId!,
-                        courseName: courses[index].courseName ?? '',
-                      ),
-                    );
-                  },
-                );
-              },
+            LinearProgressIndicator(
+              value: 0.8,
+              minHeight: 5,
+              backgroundColor: Colors.black,
             ),
+            if (controller.isGetCoursesLoading == true)
+              const Center(child: CircularProgressIndicator())
+            else
+              ListView.builder(
+                shrinkWrap: true,
+                physics: const NeverScrollableScrollPhysics(),
+                itemCount:
+                    courses.length > controller.maxHomeCourseCount ? controller.maxHomeCourseCount : courses.length,
+                itemBuilder: (context, index) {
+                  return ListTile(
+                    title: Text(courses[index].courseName ?? ''),
+                    onTap: () {
+                      Get.toNamed(
+                        Routes.exerciseList,
+                        arguments: ExerciseListPageArgs(
+                          courseId: courses[index].courseId!,
+                          courseName: courses[index].courseName ?? '',
+                        ),
+                      );
+                    },
+                  );
+                },
+              ),
           ],
         );
       },

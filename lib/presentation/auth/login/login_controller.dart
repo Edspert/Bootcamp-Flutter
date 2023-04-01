@@ -14,7 +14,6 @@ class LoginController extends GetxController {
 
   LoginController({required this.firebaseAuthService, required this.authRepository});
 
-
   /// Steps:
   /// 1. Sign In With Google
   /// 2. Get Email from UserCredential

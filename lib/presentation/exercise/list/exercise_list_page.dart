@@ -1,3 +1,4 @@
+import 'package:elearning/core/values/colors.dart';
 import 'package:elearning/presentation/exercise/list/exercise_list_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -50,9 +51,9 @@ class _ExerciseListPageState extends State<ExerciseListPage> {
                   : GridView.builder(
                       padding: const EdgeInsets.all(20),
                       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                        crossAxisCount: isTablet ? 3 : 2,
+                        crossAxisCount: 3,
                         childAspectRatio: 153 / 96,
-                        crossAxisSpacing: 14,
+                        crossAxisSpacing: 16,
                         mainAxisSpacing: 12,
                       ),
                       itemCount: exercises.length,
@@ -71,6 +72,4 @@ class _ExerciseListPageState extends State<ExerciseListPage> {
       },
     );
   }
-
-
 }

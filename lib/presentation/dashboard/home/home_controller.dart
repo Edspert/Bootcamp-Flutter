@@ -13,18 +13,23 @@ class HomeController extends GetxController {
   HomeController(this.firebaseAuthService, this.courseRepository, this.bannerRepository);
 
   List<CourseData> courseList = [];
+  bool isGetCoursesLoading = false;
 
   // Currently set to static
   String majorName = 'IPA';
-  int maxHomeCourseCount = 3;
+  int maxHomeCourseCount = 5;
 
   Future<void> getCourses() async {
+    // Set Loading
+    isGetCoursesLoading = true;
+    update();
     String? email = firebaseAuthService.getCurrentSignedInUserEmail();
     if (email != null) {
       List<CourseData> result = await courseRepository.getCourses(
         majorName: majorName,
         email: email,
       );
+      isGetCoursesLoading = false;
       courseList = result;
       update();
     }
