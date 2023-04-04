@@ -1,4 +1,5 @@
 import 'package:elearning/presentation/dashboard/dashboard_controller.dart';
+import 'package:elearning/presentation/dashboard/discussion/discussion_page.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -16,10 +17,10 @@ class DashboardPage extends GetView<DashboardController> {
         child: Scaffold(
           body: IndexedStack(
             index: controller.selectedNavIndex.value,
-            children: [
-              const HomePage(),
-              const Placeholder(child: Text('Diskusi Soal')),
-              const ProfilePage(),
+            children: const [
+              HomePage(),
+              DiscussionPage(),
+              ProfilePage(),
             ],
           ),
           bottomNavigationBar: BottomNavigationBar(

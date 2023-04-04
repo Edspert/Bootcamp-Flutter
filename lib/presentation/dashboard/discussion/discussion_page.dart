@@ -1,8 +1,10 @@
-import 'package:edspert_chat/presentation/get/discussion_controller.dart';
-import 'package:edspert_chat/presentation/widgets/chat_item_widget.dart';
-import 'package:edspert_chat/presentation/widgets/input_chat_widget.dart';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+
+import 'chat_item_widget.dart';
+import 'discussion_controller.dart';
+import 'input_chat_widget.dart';
 
 /// C is a generic class can referred to other class based on assignment
 /// In this case other engineer can create new controller but must extends

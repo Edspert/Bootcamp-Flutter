@@ -1,6 +1,7 @@
-import 'package:edspert_chat/data/model/chat_item.dart';
+import 'package:elearning/core/utils/date_time_ext.dart';
 import 'package:flutter/material.dart';
-import '../../util/date_time_ext.dart';
+
+import '../../../data/model/chat_item.dart';
 
 class ChatItemWidget extends StatelessWidget {
   final ChatItem chat;

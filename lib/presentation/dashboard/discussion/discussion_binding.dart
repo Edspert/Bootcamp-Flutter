@@ -1,7 +1,8 @@
-import 'package:edspert_chat/data/repository/chat_repository.dart';
-import 'package:edspert_chat/data/repository/chat_repository_impl.dart';
-import 'package:edspert_chat/presentation/get/discussion_controller.dart';
+
 import 'package:get/get.dart';
+
+import '../../../data/repository/chat_repository.dart';
+import 'discussion_controller.dart';
 
 class DiscussionBinding extends Bindings {
   @override

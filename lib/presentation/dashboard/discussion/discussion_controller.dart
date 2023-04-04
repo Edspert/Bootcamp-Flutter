@@ -1,7 +1,8 @@
-import 'package:edspert_chat/data/model/chat_item.dart';
-import 'package:edspert_chat/data/repository/chat_repository.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
+
+import '../../../data/model/chat_item.dart';
+import '../../../data/repository/chat_repository.dart';
 
 class DiscussionController extends GetxController {
   final ChatRepository _chatRepository;
