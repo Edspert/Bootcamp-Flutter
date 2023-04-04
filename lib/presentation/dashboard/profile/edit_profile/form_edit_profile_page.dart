@@ -3,8 +3,7 @@ import 'package:get/get.dart';
 
 import 'edit_profile_controller.dart';
 
-class FormEditProfilePage<C extends EditProfileController>
-    extends GetWidget<C> {
+class FormEditProfilePage<C extends EditProfileController> extends GetWidget<C> {
   const FormEditProfilePage({super.key});
 
   @override

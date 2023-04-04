@@ -34,6 +34,42 @@ class ChatRepositoryImpl implements ChatRepository {
         dateTime: third,
       ),
       ChatItem(
+        content: 'Halo semua saya Andika dari SMAN 3 Yogyakarta.',
+        id: 3,
+        name: 'Karina',
+        dateTime: third,
+      ),
+      ChatItem(
+        content: 'Halo semua saya Andika dari SMAN 3 Yogyakarta.',
+        id: 3,
+        name: 'Karina',
+        dateTime: third,
+      ),
+      ChatItem(
+        content: 'Halo semua saya Andika dari SMAN 3 Yogyakarta.',
+        id: 3,
+        name: 'Karina',
+        dateTime: third,
+      ),
+      ChatItem(
+        content: 'Halo semua saya Andika dari SMAN 3 Yogyakarta.',
+        id: 3,
+        name: 'Karina',
+        dateTime: third,
+      ),
+      ChatItem(
+        content: 'Halo semua saya Andika dari SMAN 3 Yogyakarta.',
+        id: 3,
+        name: 'Karina',
+        dateTime: third,
+      ),
+      ChatItem(
+        content: 'Halo semua saya Andika dari SMAN 3 Yogyakarta.',
+        id: 3,
+        name: 'Karina',
+        dateTime: third,
+      ),
+      ChatItem(
         content: 'Halo semua saya Andika dari SMAN 4 Yogyakarta.',
         id: 4,
         name: 'Andy',
@@ -52,6 +88,13 @@ class ChatRepositoryImpl implements ChatRepository {
         name: 'Arin',
         dateTime: six,
         isTutor: true,
+      ),
+      ChatItem(
+        content: 'OKE',
+        id: 7,
+        name: 'Chandra',
+        dateTime: five,
+        isSender: true,
       ),
     ];
 

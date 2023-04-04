@@ -18,8 +18,7 @@ class ChatItemWidget extends StatelessWidget {
       ),
       child: Column(
         mainAxisSize: MainAxisSize.min,
-        crossAxisAlignment:
-            (chat.isSender) ? CrossAxisAlignment.end : CrossAxisAlignment.start,
+        crossAxisAlignment: chat.isSender == false ? CrossAxisAlignment.start : CrossAxisAlignment.end,
         children: [
           Text(
             chat.name,
@@ -30,13 +29,9 @@ class ChatItemWidget extends StatelessWidget {
             margin: const EdgeInsets.all(0),
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.only(
-                  bottomRight: (chat.isSender)
-                      ? const Radius.circular(0)
-                      : const Radius.circular(8),
+                  bottomRight: (chat.isSender) ? const Radius.circular(0) : const Radius.circular(8),
                   bottomLeft: const Radius.circular(8),
-                  topLeft: (!chat.isSender)
-                      ? const Radius.circular(0)
-                      : const Radius.circular(8),
+                  topLeft: (!chat.isSender) ? const Radius.circular(0) : const Radius.circular(8),
                   topRight: const Radius.circular(8)),
             ),
             child: Padding(

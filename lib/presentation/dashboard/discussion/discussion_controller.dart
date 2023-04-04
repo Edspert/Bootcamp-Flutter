@@ -40,5 +40,10 @@ class DiscussionController extends GetxController {
     _selectedFile.value = cameraFile;
   }
 
+  Future<void> openGallery() async {
+    final galleryFile = await _picker.pickImage(source: ImageSource.gallery);
+    _selectedFile.value = galleryFile;
+  }
+
   int get messageLength => _messages.value.length;
 }

@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -19,18 +18,20 @@ class DiscussionPage<C extends DiscussionController> extends GetView<C> {
     return Scaffold(
       resizeToAvoidBottomInset: true,
       appBar: buildAppBar(context),
-      body: buildBody(context),
-      bottomNavigationBar: buildBottom(context),
+      body: Column(
+        children: [Expanded(child: buildBody(context)), buildBottom(context)],
+      ),
     );
   }
 
   PreferredSizeWidget buildAppBar(BuildContext context) {
     return AppBar(
       title: const Text('Diskusi Soal'),
-      shape: const RoundedRectangleBorder(
+      centerTitle: true,
+      shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.only(
           bottomLeft: Radius.circular(16),
-          bottomRight: Radius.circular(16),
+          bottomRight: Radius.circular(10),
         ),
       ),
     );
@@ -56,6 +57,7 @@ class DiscussionPage<C extends DiscussionController> extends GetView<C> {
 
   Widget buildData(BuildContext context) {
     return ListView.builder(
+      padding: EdgeInsets.symmetric(vertical: 16),
       itemBuilder: (context, index) {
         final chat = controller.messages[index];
         return ChatItemWidget(chat: chat);
@@ -67,11 +69,18 @@ class DiscussionPage<C extends DiscussionController> extends GetView<C> {
 
   Widget buildBottom(BuildContext context) {
     final bottomPadding = MediaQuery.of(context).viewInsets.bottom;
-    return Card(
-      elevation: 16,
+    return Container(
+      decoration: BoxDecoration(boxShadow: [
+        BoxShadow(
+          offset: const Offset(0, 0),
+          blurRadius: 7,
+          spreadRadius: 0,
+          color: Colors.black.withOpacity(0.25),
+        ),
+      ]),
       margin: const EdgeInsets.all(0),
       child: Padding(
-        padding: EdgeInsets.only(bottom: bottomPadding),
+        padding: EdgeInsets.only(bottom: bottomPadding, top: bottomPadding),
         child: InputChatWidget(
           onTapAdd: () => onTapAdd(context),
           onTapCamera: () => onTapCamera(context),
@@ -91,6 +100,6 @@ class DiscussionPage<C extends DiscussionController> extends GetView<C> {
   }
 
   void onTapAdd(BuildContext context) {
-    debugPrint(controller.messageLength.toString());
+    controller.openGallery();
   }
 }

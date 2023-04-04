@@ -1,6 +1,5 @@
 import 'package:elearning/data/model/exercise_result.dart';
 import 'package:elearning/presentation/dashboard/discussion/discussion_binding.dart';
-import 'package:elearning/presentation/dashboard/profile/edit_profile_binding.dart';
 import 'package:elearning/presentation/dashboard/profile/profile_binding.dart';
 import "package:get/get_navigation/src/routes/get_route.dart";
 
@@ -8,7 +7,8 @@ import '../presentation/auth/regist_form/regist_form_binding.dart';
 import '../presentation/auth/regist_form/regist_form_page.dart';
 import '../presentation/dashboard/dashboard_binding.dart';
 import '../presentation/dashboard/dashboard_page.dart';
-import '../presentation/dashboard/profile/edit_profile_page.dart';
+import '../presentation/dashboard/profile/edit_profile/edit_profile_binding.dart';
+import '../presentation/dashboard/profile/edit_profile/edit_profile_page.dart';
 import '../presentation/exercise/result/exercise_result_binding.dart';
 import '../presentation/splash/splash_binding.dart';
 import '../presentation/splash/splash_page.dart';

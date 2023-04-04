@@ -15,8 +15,9 @@ class DashboardPage extends GetView<DashboardController> {
       int selectedIndex = controller.selectedNavIndex.value;
       return SafeArea(
         child: Scaffold(
+          // body: _bodyList()[selectedIndex],
           body: IndexedStack(
-            index: controller.selectedNavIndex.value,
+            index: selectedIndex,
             children: const [
               HomePage(),
               DiscussionPage(),
@@ -50,7 +51,7 @@ class DashboardPage extends GetView<DashboardController> {
 
   List<Widget> _bodyList() => [
         const HomePage(),
-        const Placeholder(child: Text('Diskusi Soal')),
+        const DiscussionPage(),
         const ProfilePage(),
       ];
 }
