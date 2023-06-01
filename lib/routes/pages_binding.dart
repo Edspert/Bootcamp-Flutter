@@ -25,15 +25,35 @@ import 'routes.dart';
 
 class Pages {
   static final pages = [
-    GetPage(name: Routes.splash, page: () => const SplashPage(), binding: SplashBinding()),
-    GetPage(name: Routes.login, page: () => const LoginPage(), binding: LoginBinding()),
-    GetPage(name: Routes.dashboard, page: () => const DashboardPage(), bindings: [
-      DashboardBinding(),
-      ProfileBinding(),
-      DiscussionBinding(),
-    ]),
-    GetPage(name: Routes.registerForm, page: () => const RegistFormPage(), binding: RegistFormBinding()),
-    GetPage(name: Routes.courseList, page: () => const CourseListPage(), binding: CourseListBinding()),
+    GetPage(
+      name: Routes.splash,
+      page: () => const SplashPage(),
+      binding: SplashBinding(),
+    ),
+    GetPage(
+      name: Routes.login,
+      page: () => const LoginPage(),
+      binding: LoginBinding(),
+    ),
+    GetPage(
+      name: Routes.dashboard,
+      page: () => const DashboardPage(),
+      bindings: [
+        DashboardBinding(),
+        ProfileBinding(),
+        DiscussionBinding(),
+      ],
+    ),
+    GetPage(
+      name: Routes.registerForm,
+      page: () => const RegistFormPage(),
+      binding: RegistFormBinding(),
+    ),
+    GetPage(
+      name: Routes.courseList,
+      page: () => const CourseListPage(),
+      binding: CourseListBinding(),
+    ),
     GetPage(
       name: Routes.exerciseList,
       page: () => const ExerciseListPage(),
@@ -56,6 +76,7 @@ class Pages {
       name: EditProfilePage.routeName,
       page: () => const EditProfilePage(),
       binding: EditProfileBinding(),
+      arguments: EditProfileArgs,
     ),
   ];
 }

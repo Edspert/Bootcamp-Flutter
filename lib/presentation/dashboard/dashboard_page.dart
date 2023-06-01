@@ -12,7 +12,7 @@ class DashboardPage extends GetView<DashboardController> {
   @override
   Widget build(BuildContext context) {
     return Obx(() {
-      int selectedIndex = controller.selectedNavIndex.value;
+      int selectedIndex = controller.selectedNavIndexObs.value;
       return SafeArea(
         child: Scaffold(
           // body: _bodyList()[selectedIndex],

@@ -19,6 +19,11 @@ class HomeController extends GetxController {
   String majorName = 'IPA';
   int maxHomeCourseCount = 5;
 
+  @override
+  void onInit() {
+    super.onInit();
+  }
+
   Future<void> getCourses() async {
     // Set Loading
     isGetCoursesLoading = true;

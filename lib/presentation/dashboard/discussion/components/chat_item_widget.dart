@@ -1,7 +1,7 @@
 import 'package:elearning/core/utils/date_time_ext.dart';
 import 'package:flutter/material.dart';
 
-import '../../../data/model/chat_item.dart';
+import '../../../../data/model/chat_item.dart';
 
 class ChatItemWidget extends StatelessWidget {
   final ChatItem chat;
@@ -36,10 +36,12 @@ class ChatItemWidget extends StatelessWidget {
             ),
             child: Padding(
               padding: const EdgeInsets.all(8.0),
-              child: Text(chat.content,
-                  style: TextStyle(
-                    color: (chat.isSender) ? Colors.white : Colors.black,
-                  )),
+              child: Text(
+                chat.content,
+                style: TextStyle(
+                  color: (chat.isSender) ? Colors.white : Colors.black,
+                ),
+              ),
             ),
           ),
           const SizedBox(height: 4),

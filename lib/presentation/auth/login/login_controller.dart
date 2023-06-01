@@ -36,7 +36,7 @@ class LoginController extends GetxController {
       UserData? userData = await authRepository.getUserByEmail(email: email);
       if (userData != null) {
         // User is Registered
-        Get.offAllNamed(Routes.dashboard);
+        Get.offAllNamed(Routes.registerForm);
       } else {
         // User is Signed In & Is not Registered
         Get.offAllNamed(Routes.registerForm);

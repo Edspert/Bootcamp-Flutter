@@ -47,7 +47,7 @@ class _RegistFormPageState extends State<RegistFormPage> {
         body: Form(
           key: _formKey,
           child: ListView(
-            padding: const EdgeInsets.all(28),
+            padding: EdgeInsets.all(20),
             children: [
               const Text('Email'),
               TextFormField(
@@ -56,13 +56,8 @@ class _RegistFormPageState extends State<RegistFormPage> {
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(8),
                   ),
-                  hintText: 'Email',
                 ),
                 enabled: false,
-                validator: FormBuilderValidators.compose([
-                  FormBuilderValidators.required(),
-                  FormBuilderValidators.email(),
-                ]),
               ),
               SizedBox(height: 16),
               const Text('Nama Lengkap'),
@@ -72,7 +67,7 @@ class _RegistFormPageState extends State<RegistFormPage> {
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(8),
                   ),
-                  hintText: 'Nama Lengkap',
+                  hintText: 'contoh: Ihsan Adireja',
                 ),
                 validator: FormBuilderValidators.compose([
                   FormBuilderValidators.required(),
@@ -147,13 +142,17 @@ class _RegistFormPageState extends State<RegistFormPage> {
                         decoration: BoxDecoration(
                           color: jenisKelamin == 'Perempuan' ? Colors.green : Colors.white,
                           borderRadius: BorderRadius.circular(8),
-                          border: Border.all(color: Color(0xFFD6D6D6), width: 1),
+                          border: Border.all(
+                            color: Color(0xFFD6D6D6),
+                            width: 1,
+                          ),
                         ),
                         child: Text(
                           'Perempuan',
                           textAlign: TextAlign.center,
                           style: TextStyle(
                             color: jenisKelamin == 'Perempuan' ? Colors.white : Colors.black,
+                            fontWeight: FontWeight.w600,
                           ),
                         ),
                       ),
@@ -187,8 +186,8 @@ class _RegistFormPageState extends State<RegistFormPage> {
                   } else {
                     Get.snackbar(
                       'Invalid!!',
-                      'asdfsdfgsdfg',
-                      snackPosition: SnackPosition.BOTTOM,
+                      'blablabla',
+                      snackPosition: SnackPosition.TOP,
                       backgroundColor: Colors.blue,
                     );
                   }

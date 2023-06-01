@@ -17,22 +17,26 @@ class ExerciseResultPage extends GetView<ExerciseResultController> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
-              InkWell(
-                onTap: () {
-                  Get.back();
-                },
-                child: Row(
-                  children: const [
-                    Icon(
-                      Icons.close_outlined,
-                      color: AppColors.white,
-                    ),
-                    SizedBox(width: 8),
-                    Text(
-                      'Tutup',
-                      style: TextStyle(color: AppColors.white),
-                    ),
-                  ],
+              Align(
+                alignment: Alignment.centerLeft,
+                child: TextButton(
+                  onPressed: () {
+                    Get.back();
+                  },
+                  child: Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: const [
+                      Icon(
+                        Icons.close_outlined,
+                        color: AppColors.white,
+                      ),
+                      SizedBox(width: 8),
+                      Text(
+                        'Tutup',
+                        style: TextStyle(color: AppColors.white),
+                      ),
+                    ],
+                  ),
                 ),
               ),
               const SizedBox(height: 60),

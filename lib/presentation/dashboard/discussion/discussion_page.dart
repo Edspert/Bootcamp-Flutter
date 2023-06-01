@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import 'chat_item_widget.dart';
+import 'components/chat_item_widget.dart';
 import 'discussion_controller.dart';
-import 'input_chat_widget.dart';
+import 'components/input_chat_widget.dart';
 
 /// C is a generic class can referred to other class based on assignment
 /// In this case other engineer can create new controller but must extends
@@ -19,7 +19,12 @@ class DiscussionPage<C extends DiscussionController> extends GetView<C> {
       resizeToAvoidBottomInset: true,
       appBar: buildAppBar(context),
       body: Column(
-        children: [Expanded(child: buildBody(context)), buildBottom(context)],
+        children: [
+          Expanded(
+            child: buildBody(context),
+          ),
+          _buildBottomChatOperation(context),
+        ],
       ),
     );
   }
@@ -28,9 +33,9 @@ class DiscussionPage<C extends DiscussionController> extends GetView<C> {
     return AppBar(
       title: const Text('Diskusi Soal'),
       centerTitle: true,
-      shape: RoundedRectangleBorder(
+      shape: const RoundedRectangleBorder(
         borderRadius: BorderRadius.only(
-          bottomLeft: Radius.circular(16),
+          bottomLeft: Radius.circular(25),
           bottomRight: Radius.circular(10),
         ),
       ),
@@ -43,7 +48,7 @@ class DiscussionPage<C extends DiscussionController> extends GetView<C> {
         return buildLoading(context);
       }
 
-      return buildData(context);
+      return _buildChatListView(context);
     });
   }
 
@@ -55,29 +60,31 @@ class DiscussionPage<C extends DiscussionController> extends GetView<C> {
     );
   }
 
-  Widget buildData(BuildContext context) {
+  Widget _buildChatListView(BuildContext context) {
     return ListView.builder(
-      padding: EdgeInsets.symmetric(vertical: 16),
+      itemCount: controller.messages.length,
       itemBuilder: (context, index) {
         final chat = controller.messages[index];
         return ChatItemWidget(chat: chat);
       },
-      itemCount: controller.messages.length,
+      padding: const EdgeInsets.symmetric(vertical: 16),
       reverse: true,
     );
   }
 
-  Widget buildBottom(BuildContext context) {
+  Widget _buildBottomChatOperation(BuildContext context) {
     final bottomPadding = MediaQuery.of(context).viewInsets.bottom;
     return Container(
-      decoration: BoxDecoration(boxShadow: [
-        BoxShadow(
-          offset: const Offset(0, 0),
-          blurRadius: 7,
-          spreadRadius: 0,
-          color: Colors.black.withOpacity(0.25),
-        ),
-      ]),
+      decoration: BoxDecoration(
+        boxShadow: [
+          BoxShadow(
+            offset: const Offset(0, -1),
+            blurRadius: 10,
+            spreadRadius: 0,
+            color: Colors.black.withOpacity(0.25),
+          ),
+        ],
+      ),
       margin: const EdgeInsets.all(0),
       child: Padding(
         padding: EdgeInsets.only(bottom: bottomPadding, top: bottomPadding),

@@ -27,6 +27,49 @@ class CourseListPage extends GetView<CourseListController> {
             return ListView.builder(
               itemCount: courses.length,
               itemBuilder: (context, index) {
+                return InkWell(
+                  onTap: () {
+                    Get.toNamed(
+                      Routes.exerciseList,
+                      arguments: ExerciseListPageArgs(
+                        courseId: courses[index].courseId ?? '',
+                        courseName: courses[index].courseName ?? '',
+                      ),
+                    );
+                  },
+                  child: Container(
+                    margin: EdgeInsets.symmetric(vertical: 7, horizontal: 18),
+                    padding: EdgeInsets.symmetric(horizontal: 18, vertical: 18),
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(10),
+                      color: Colors.lightBlue,
+                    ),
+                    child: Row(
+                      children: [
+                        Icon(Icons.abc),
+                        SizedBox(
+                          width: 20,
+                        ),
+                        Expanded(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(courses[index].courseName ?? ''),
+                              if (courses[index].jumlahMateri! > 0)
+                                Text(
+                                  '${courses[index].jumlahDone}/${courses[index].jumlahMateri} Paket Latihan Soal',
+                                ),
+                              if (courses[index].jumlahMateri! > 0)
+                                LinearProgressIndicator(
+                                  value: (courses[index].jumlahDone!) / (courses[index].jumlahMateri!),
+                                ),
+                            ],
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                );
                 return ListTile(
                   title: Text(courses[index].courseName ?? ''),
                   onTap: () {

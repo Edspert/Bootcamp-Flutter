@@ -33,7 +33,6 @@ class _ExerciseListPageState extends State<ExerciseListPage> {
 
   @override
   Widget build(BuildContext context) {
-    bool isTablet = MediaQuery.of(context).size.width >= 600;
     return GetBuilder<ExerciseListController>(
       builder: (ExerciseListController controller) {
         List<ExerciseListData> exercises = controller.exerciseList;
@@ -45,13 +44,13 @@ class _ExerciseListPageState extends State<ExerciseListPage> {
           body: controller.isExerciseListLoading
               ? const Center(child: CircularProgressIndicator())
               : exercises.isEmpty
-                  ? Center(
+                  ? const Center(
                       child: Text('Yah, Paket tidak tersedia'),
                     )
                   : GridView.builder(
                       padding: const EdgeInsets.all(20),
-                      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                        crossAxisCount: 3,
+                      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                        crossAxisCount: 2,
                         childAspectRatio: 153 / 96,
                         crossAxisSpacing: 16,
                         mainAxisSpacing: 12,

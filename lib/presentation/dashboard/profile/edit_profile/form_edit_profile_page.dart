@@ -9,103 +9,85 @@ class FormEditProfilePage<C extends EditProfileController> extends GetWidget<C> 
   @override
   Widget build(BuildContext context) {
     return ListView(
+      padding: EdgeInsets.symmetric(
+        horizontal: 16,
+        vertical: 16,
+      ),
       children: [
-        const Padding(
-          padding: EdgeInsets.all(16),
-          child: Text(
-            'Data Diri',
-            style: TextStyle(
-              fontSize: 20,
+        Text(
+          'Data Diri',
+          style: TextStyle(
+            fontSize: 20,
+          ),
+        ),
+        SizedBox(
+          height: 32,
+        ),
+        TextField(
+          controller: TextEditingController(text: controller.args.name),
+          decoration: InputDecoration(
+            labelText: 'Nama Lengkap',
+            border: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(16),
             ),
           ),
         ),
-        Padding(
-          padding: const EdgeInsets.symmetric(
-            horizontal: 16,
-            vertical: 8,
-          ),
-          child: TextField(
-            decoration: InputDecoration(
-              labelText: 'Nama Lengkap',
-              border: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(16),
-              ),
+        SizedBox(
+          height: 16,
+        ),
+        TextField(
+          decoration: InputDecoration(
+            labelText: 'Email',
+            border: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(16),
             ),
           ),
         ),
-        Padding(
-          padding: const EdgeInsets.symmetric(
-            horizontal: 16,
-            vertical: 8,
+        SizedBox(
+          height: 16,
+        ),
+        TextField(
+          readOnly: true,
+          controller: controller.etGender,
+          decoration: InputDecoration(
+            suffixIcon: const Icon(Icons.arrow_drop_down),
+            labelText: 'Jenis Kelamin',
+            hintText: 'Pilih Jenis Kelamin',
+            border: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(16),
+            ),
           ),
-          child: TextField(
-            decoration: InputDecoration(
-              labelText: 'Email',
-              border: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(16),
-              ),
+          onTap: () => Get.bottomSheet(chooseGender(context)),
+        ),
+        SizedBox(
+          height: 16,
+        ),
+        TextField(
+          decoration: InputDecoration(
+            labelText: 'Kelas',
+            border: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(16),
             ),
           ),
         ),
-        Padding(
-          padding: const EdgeInsets.symmetric(
-            horizontal: 16,
-            vertical: 8,
-          ),
-          child: TextField(
-            readOnly: true,
-            controller: controller.etGender,
-            decoration: InputDecoration(
-              suffixIcon: const Icon(Icons.arrow_drop_down),
-              labelText: 'Jenis Kelamin',
-              hintText: 'Pilih Jenis Kelamin',
-              border: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(16),
-              ),
-            ),
-            onTap: () => Get.bottomSheet(chooseGender(context)),
-          ),
+        SizedBox(
+          height: 16,
         ),
-        Padding(
-          padding: const EdgeInsets.symmetric(
-            horizontal: 16,
-            vertical: 8,
-          ),
-          child: TextField(
-            decoration: InputDecoration(
-              labelText: 'Kelas',
-              border: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(16),
-              ),
-            ),
-          ),
-        ),
-        Padding(
-          padding: const EdgeInsets.symmetric(
-            horizontal: 16,
-            vertical: 8,
-          ),
-          child: TextField(
-            decoration: InputDecoration(
-              labelText: 'Sekolah',
-              border: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(16),
-              ),
+        TextField(
+          decoration: InputDecoration(
+            labelText: 'Sekolah',
+            border: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(16),
             ),
           ),
         ),
         const SizedBox(height: 16),
-        Padding(
-          padding: const EdgeInsets.symmetric(
-            horizontal: 16,
+        ElevatedButton(
+          onPressed: () => onUpdateData(),
+          style: ElevatedButton.styleFrom(
+            backgroundColor: const Color(0xff3A7FD5),
           ),
-          child: ElevatedButton(
-            onPressed: () => onUpdateData(),
-            style: ElevatedButton.styleFrom(
-              backgroundColor: const Color(0xff3A7FD5),
-            ),
-            child: const Text('Perbarui Data'),
-          ),
+          child: const Text('Perbarui Data'),
         ),
       ],
     );

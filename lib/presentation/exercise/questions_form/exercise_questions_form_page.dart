@@ -32,14 +32,18 @@ class ExerciseQuestionsFormPage extends StatelessWidget {
           return Column(
             children: [
               // Question Number Horizontal ListView
-              SizedBox(
+              Container(
                 height: 50,
+                color: Colors.white,
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: List.generate(
-                    questions.length,
+                    10,
                     (index) {
-                      bool isSelected = index == activeQuestionIndex;
+                      bool isAnswered = controller.questionAnswers.any(
+                        (element) =>
+                            element.questionId == questions[index].questionId && element.questionId == activeQuestionId,
+                      );
 
                       return InkWell(
                         onTap: () {
@@ -53,14 +57,17 @@ class ExerciseQuestionsFormPage extends StatelessWidget {
                             border: Border.all(
                               color: AppColors.primary,
                             ),
-                            color: isSelected ? AppColors.primary : AppColors.white,
+                            color: isAnswered ? AppColors.primary : AppColors.white,
                             borderRadius: BorderRadius.circular(12),
                           ),
-                          child: Text(
-                            '${index + 1}',
-                            style: TextStyle(
-                              fontWeight: isSelected ? FontWeight.w800 : FontWeight.w400,
-                              color: isSelected ? Colors.white : Colors.black,
+                          child: Center(
+                            child: Text(
+                              '${index + 1}',
+                              style: TextStyle(
+                                fontWeight: isAnswered ? FontWeight.w800 : FontWeight.w400,
+                                color: isAnswered ? Colors.white : Colors.black,
+                                fontSize: 12,
+                              ),
                             ),
                           ),
                         ),
@@ -77,15 +84,34 @@ class ExerciseQuestionsFormPage extends StatelessWidget {
                     HtmlWidget(
                       activeQuestion.questionTitle ?? '',
                     ),
-
+                    // Text(activeQuestion.questionTitle ?? ''),
                     // Opsi Jawaban
-                    RadioListTile(
-                      title: Text(activeQuestion.optionA ?? ''),
-                      value: 'A',
-                      groupValue: selectedAnswer,
-                      onChanged: (val) {
-                        controller.updateAnswerToQuestion(questionId: activeQuestionId, answer: 'A');
+                    InkWell(
+                      onTap: () {
+                        controller.updateAnswerToQuestion(
+                          questionId: activeQuestionId,
+                          answer: 'A',
+                        );
                       },
+                      child: Container(
+                        padding: const EdgeInsets.symmetric(vertical: 12),
+                        decoration: BoxDecoration(
+                          color: selectedAnswer == 'A' ? Colors.blue : Colors.white,
+                          borderRadius: BorderRadius.circular(8),
+                          border: Border.all(
+                            color: Color(0xFFD6D6D6),
+                            width: 1,
+                          ),
+                        ),
+                        child: Text(
+                          'A. ${activeQuestion.optionA}',
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                            color: selectedAnswer == 'A' ? Colors.white : Colors.black,
+                            fontWeight: FontWeight.w600,
+                          ),
+                        ),
+                      ),
                     ),
                     RadioListTile(
                       title: Text(activeQuestion.optionB ?? ''),

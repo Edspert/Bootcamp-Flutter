@@ -10,7 +10,6 @@ class CourseListController extends GetxController {
 
   CourseListController(this.courseRepository, this.firebaseAuthService);
 
-
   @override
   void onInit() {
     super.onInit();
@@ -19,6 +18,7 @@ class CourseListController extends GetxController {
       await getCourses();
     });
   }
+
   // Currently set to static
   String majorName = 'IPA';
 
@@ -27,7 +27,10 @@ class CourseListController extends GetxController {
   Future<void> getCourses() async {
     String? email = firebaseAuthService.getCurrentSignedInUserEmail();
     if (email != null) {
-      List<CourseData> result = await courseRepository.getCourses(majorName: majorName, email: email);
+      List<CourseData> result = await courseRepository.getCourses(
+        majorName: majorName,
+        email: email,
+      );
       courseList = result;
       update();
     }

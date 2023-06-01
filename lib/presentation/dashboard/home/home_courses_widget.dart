@@ -16,8 +16,9 @@ class HomeCoursesWidget extends StatefulWidget {
 class _HomeCoursesWidgetState extends State<HomeCoursesWidget> {
   @override
   void initState() {
-    Get.find<HomeController>().getCourses();
     super.initState();
+
+    Get.find<HomeController>().getCourses();
   }
 
   @override
@@ -36,11 +37,6 @@ class _HomeCoursesWidgetState extends State<HomeCoursesWidget> {
                   Get.toNamed(Routes.courseList);
                 },
               ),
-            LinearProgressIndicator(
-              value: 0.8,
-              minHeight: 5,
-              backgroundColor: Colors.black,
-            ),
             if (controller.isGetCoursesLoading == true)
               const Center(child: CircularProgressIndicator())
             else

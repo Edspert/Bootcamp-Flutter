@@ -24,7 +24,13 @@ class ProfilePage<C extends ProfileController> extends GetView<C> {
       centerTitle: true,
       actions: [
         TextButton(
-          onPressed: () => redirectToEditPage(),
+          onPressed: () => redirectToEditPage(
+            EditProfileArgs(
+              name: 'Blabla',
+              email: 'aaaaa@g.com',
+              jenisKelamin: 'Laki-laki',
+            ),
+          ),
           child: const Text(
             'Edit',
             style: TextStyle(
@@ -43,7 +49,10 @@ class ProfilePage<C extends ProfileController> extends GetView<C> {
     );
   }
 
-  void redirectToEditPage() => Get.toNamed(EditProfilePage.routeName);
+  void redirectToEditPage(EditProfileArgs args) => Get.toNamed(
+        EditProfilePage.routeName,
+        arguments: args,
+      );
 
   PreferredSizeWidget buildBottomAppBar(BuildContext context) {
     return PreferredSize(
@@ -215,7 +224,13 @@ class ProfilePage<C extends ProfileController> extends GetView<C> {
   }) {
     return GestureDetector(
       onTap: onTap,
-      child: Card(
+      child: Container(
+        decoration: BoxDecoration(
+          color: Colors.white,
+          boxShadow: [
+            BoxShadow(color: Colors.black.withOpacity(0.25), blurRadius: 6, spreadRadius: 0, offset: Offset(0, 0))
+          ],
+        ),
         margin: const EdgeInsets.symmetric(horizontal: 8),
         child: Padding(
           padding: const EdgeInsets.all(8.0),
@@ -241,43 +256,82 @@ class ProfilePage<C extends ProfileController> extends GetView<C> {
   }
 
   void onLogoutPressed() {
-    Get.bottomSheet(
-      Wrap(
-        children: [
-          Column(
-            children: [
-              const SizedBox(height: 16),
-              const Text('Logout?'),
-              const SizedBox(height: 16),
-              Row(
-                children: [
-                  const SizedBox(width: 32),
-                  Expanded(
-                    child: OutlinedButton(
-                      onPressed: () {
-                        Get.back();
-                      },
-                      child: const Text('Tidak'),
-                    ),
-                  ),
-                  const SizedBox(width: 32),
-                  Expanded(
-                    child: ElevatedButton(
+    Get.dialog(
+      Dialog(
+        child: Wrap(
+          children: [
+            Column(
+              children: [
+                const SizedBox(height: 16),
+                const Text('Logout?'),
+                const SizedBox(height: 16),
+                Row(
+                  children: [
+                    const SizedBox(width: 32),
+                    Expanded(
+                      child: OutlinedButton(
                         onPressed: () {
                           Get.back();
-                          controller.signOut();
                         },
-                        child: const Text('Ya')),
-                  ),
-                  const SizedBox(width: 32),
-                ],
-              ),
-              const SizedBox(height: 32),
-            ],
-          ),
-        ],
+                        child: const Text('Tidak'),
+                      ),
+                    ),
+                    const SizedBox(width: 32),
+                    Expanded(
+                      child: ElevatedButton(
+                          onPressed: () {
+                            Get.back();
+                            controller.signOut();
+                          },
+                          child: const Text('Ya')),
+                    ),
+                    const SizedBox(width: 32),
+                  ],
+                ),
+                const SizedBox(height: 32),
+              ],
+            ),
+          ],
+        ),
       ),
-      backgroundColor: Colors.white,
     );
+    // Get.bottomSheet(
+    //   Wrap(
+    //     children: [
+    //       Column(
+    //         children: [
+    //           const SizedBox(height: 16),
+    //           const Text('Logout?'),
+    //           const SizedBox(height: 16),
+    //           Row(
+    //             children: [
+    //               const SizedBox(width: 32),
+    //               Expanded(
+    //                 child: OutlinedButton(
+    //                   onPressed: () {
+    //                     Get.back();
+    //                   },
+    //                   child: const Text('Tidak'),
+    //                 ),
+    //               ),
+    //               const SizedBox(width: 32),
+    //               Expanded(
+    //                 child: ElevatedButton(
+    //                     onPressed: () {
+    //                       Get.back();
+    //                       controller.signOut();
+    //                     },
+    //                     child: const Text('Ya')),
+    //               ),
+    //               const SizedBox(width: 32),
+    //             ],
+    //           ),
+    //           const SizedBox(height: 32),
+    //         ],
+    //       ),
+    //     ],
+    //   ),
+    //   backgroundColor: Colors.white,
+    // );
   }
 }
