@@ -30,13 +30,21 @@ class _HomeCoursesWidgetState extends State<HomeCoursesWidget> {
         return Column(
           crossAxisAlignment: CrossAxisAlignment.end,
           children: [
-            if (courses.length > controller.maxHomeCourseCount)
-              TextButton(
-                child: const Text('Lihat Semua'),
-                onPressed: () {
-                  Get.toNamed(Routes.courseList);
-                },
-              ),
+            Row(
+              children: [
+                Text('Pilih Pelajaran'),
+                Expanded(
+                  child: SizedBox(),
+                ),
+                if (courses.length > controller.maxHomeCourseCount)
+                  TextButton(
+                    child: const Text('Lihat Semua'),
+                    onPressed: () {
+                      Get.toNamed(Routes.courseList);
+                    },
+                  )
+              ],
+            ),
             if (controller.isGetCoursesLoading == true)
               const Center(child: CircularProgressIndicator())
             else
@@ -45,14 +53,14 @@ class _HomeCoursesWidgetState extends State<HomeCoursesWidget> {
                 physics: const NeverScrollableScrollPhysics(),
                 itemCount:
                     courses.length > controller.maxHomeCourseCount ? controller.maxHomeCourseCount : courses.length,
-                itemBuilder: (context, index) {
+                itemBuilder: (BuildContext context, int index) {
                   return ListTile(
                     title: Text(courses[index].courseName ?? ''),
                     onTap: () {
                       Get.toNamed(
                         Routes.exerciseList,
                         arguments: ExerciseListPageArgs(
-                          courseId: courses[index].courseId!,
+                          courseId: courses[index].courseId ?? '',
                           courseName: courses[index].courseName ?? '',
                         ),
                       );

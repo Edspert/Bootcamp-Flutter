@@ -25,12 +25,14 @@ class MyApp extends StatelessWidget {
       title: 'E Learning',
       theme: ThemeData(
         primaryColor: AppColors.primary,
-        fontFamily: '',
+        fontFamily: 'OpenSans',
         appBarTheme: AppBarTheme(
           backgroundColor: AppColors.primary,
         ),
+        textTheme: TextTheme(
+          bodyMedium: TextStyle(fontSize: 14, color: Colors.blue, fontWeight: FontWeight.w500),
+        ),
       ),
-      debugShowCheckedModeBanner: false,
       initialRoute: Routes.splash,
       getPages: Pages.pages,
     );

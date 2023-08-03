@@ -2,16 +2,11 @@ import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:get/get.dart';
 
 class DashboardController extends GetxController {
-  final selectedNavIndexObs = 0.obs;
-  // int selectedNavIndex = 0;
+  int selectedNavIndex = 0;
 
   void navigateTo(int index) {
-    // Obs
-    selectedNavIndexObs.value = index;
-
-    // // Set-update
-    // selectedNavIndex = index;
-    // update();
+    selectedNavIndex = index;
+    update();
   }
 
   bool isOnline = true;

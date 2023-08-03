@@ -24,13 +24,17 @@ class SocialLoginButton extends StatelessWidget {
       type: MaterialType.transparency,
       child: InkWell(
         onTap: onPressed,
-        borderRadius: BorderRadius.circular(25),
+        borderRadius: BorderRadius.circular(30),
         child: Ink(
-          padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 32),
+          padding: EdgeInsets.symmetric(horizontal: 32, vertical: 12),
           decoration: BoxDecoration(
             color: backgroundColor,
-            borderRadius: BorderRadius.circular(25),
-            border: outlineBorderColor != null ? Border.all(color: outlineBorderColor!, width: 1) : null,
+            borderRadius: BorderRadius.circular(30),
+            border: outlineBorderColor != null
+                ? Border.all(
+                    color: outlineBorderColor!,
+                  )
+                : null,
           ),
           child: Row(
             children: [

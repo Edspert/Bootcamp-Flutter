@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -36,6 +37,8 @@ class FormEditProfilePage<C extends EditProfileController> extends GetWidget<C> 
           height: 16,
         ),
         TextField(
+          enabled: false,
+          controller: TextEditingController(text: FirebaseAuth.instance.currentUser?.email),
           decoration: InputDecoration(
             labelText: 'Email',
             border: OutlineInputBorder(
@@ -63,6 +66,7 @@ class FormEditProfilePage<C extends EditProfileController> extends GetWidget<C> 
           height: 16,
         ),
         TextField(
+          controller: TextEditingController(text: controller.args.kelas),
           decoration: InputDecoration(
             labelText: 'Kelas',
             border: OutlineInputBorder(
@@ -74,6 +78,7 @@ class FormEditProfilePage<C extends EditProfileController> extends GetWidget<C> 
           height: 16,
         ),
         TextField(
+          controller: TextEditingController(text: controller.args.sekolah),
           decoration: InputDecoration(
             labelText: 'Sekolah',
             border: OutlineInputBorder(

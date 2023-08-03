@@ -23,13 +23,13 @@ class SplashController extends GetxController {
     super.onInit();
 
     Future.delayed(const Duration(milliseconds: 2000)).then((value) async {
-      await isUserSignedIn();
+      await isUserSignedInWithGoogle();
     });
   }
 
-  Future<void> isUserSignedIn() async {
+  Future<void> isUserSignedInWithGoogle() async {
     if (FirebaseAuth.instance.currentUser != null) {
-      // User Is Signed In
+      // User Is Signed In with Google
       // Check is user registered?
       await isUserRegistered();
     } else {
@@ -41,7 +41,7 @@ class SplashController extends GetxController {
 
   Future<void> isUserRegistered() async {
     String? email = firebaseAuthService.getCurrentSignedInUserEmail();
-    // email != null artinya user sudah sign-in
+    // email != null artinya user sudah sign-in with google
     if (email != null) {
       UserData? userData = await authRepository.getUserByEmail(email: email);
       if (userData != null) {

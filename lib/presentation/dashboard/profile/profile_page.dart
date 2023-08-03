@@ -1,3 +1,4 @@
+import 'package:elearning/core/values/images.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -11,9 +12,144 @@ class ProfilePage<C extends ProfileController> extends GetView<C> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: buildAppBar(context),
-      body: buildBody(context),
+    return GestureDetector(
+      onTap: () {
+        FocusScopeNode currentFocus = FocusScope.of(context);
+        if (!currentFocus.hasPrimaryFocus) {
+          currentFocus.focusedChild?.unfocus();
+        }
+      },
+      child: Scaffold(
+        appBar: AppBar(
+          title: const Text('Akun Saya'),
+          centerTitle: true,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.only(
+              bottomLeft: Radius.circular(10),
+              bottomRight: Radius.circular(10),
+            ),
+          ),
+          actions: [
+            TextButton(
+              onPressed: () => redirectToEditPage(
+                EditProfileArgs(
+                  name: 'Blabla',
+                  email: 'aaaaa@g.com',
+                  jenisKelamin: 'Laki-laki',
+                  kelas: '12',
+                  sekolah: 'SMA 33 Jakarta',
+                ),
+              ),
+              child: const Text(
+                'Edit',
+                style: TextStyle(
+                  color: Colors.white,
+                ),
+              ),
+            ),
+          ],
+          bottom: PreferredSize(
+            preferredSize: Size(Get.width, 60),
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 20),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  const Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        'Fikri',
+                        style: TextStyle(
+                          color: Colors.white,
+                        ),
+                      ),
+                      Text(
+                        'SMA 300 Jakarta',
+                        style: TextStyle(
+                          color: Colors.white,
+                        ),
+                      ),
+                    ],
+                  ),
+                  Image.asset(ImagesAssets.iconApplePng),
+                ],
+              ),
+            ),
+          ),
+        ),
+        body: ListView(
+          padding: EdgeInsets.all(16),
+          children: [
+            Container(
+              padding: EdgeInsets.all(20),
+              decoration: BoxDecoration(
+                color: Colors.amber,
+                borderRadius: BorderRadius.circular(10),
+                boxShadow: [
+                  BoxShadow(
+                    offset: Offset(0, 0),
+                    blurRadius: 7,
+                    spreadRadius: 0,
+                    color: Colors.black.withOpacity(0.25),
+                  ),
+                ],
+              ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  Text('Identitas Diri'),
+                  IdentityRowWidget(
+                    label: 'Nama Lengkap',
+                    data: 'David Beckham',
+                  ),
+                  IdentityRowWidget(
+                    label: 'Nama Lengkap',
+                    data: 'David Beckham',
+                  ),
+                  IdentityRowWidget(
+                    label: 'Nama Lengkap',
+                    data: 'David Beckham',
+                  ),
+                  IdentityRowWidget(
+                    label: 'Nama Lengkap',
+                    data: 'David Beckham',
+                  ),
+                ],
+              ),
+            ),
+            SizedBox(
+              height: 16,
+            ),
+            InkWell(
+              onTap: () {
+                onLogoutPressed();
+              },
+              child: Container(
+                padding: EdgeInsets.all(20),
+                decoration: BoxDecoration(
+                  color: Colors.amber,
+                  borderRadius: BorderRadius.circular(10),
+                  boxShadow: [
+                    BoxShadow(
+                      offset: Offset(0, 0),
+                      blurRadius: 7,
+                      spreadRadius: 0,
+                      color: Colors.black.withOpacity(0.25),
+                    ),
+                  ],
+                ),
+                child: Row(
+                  children: [
+                    Icon(Icons.exit_to_app),
+                    Text('Keluar'),
+                  ],
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
     );
   }
 
@@ -29,6 +165,8 @@ class ProfilePage<C extends ProfileController> extends GetView<C> {
               name: 'Blabla',
               email: 'aaaaa@g.com',
               jenisKelamin: 'Laki-laki',
+              kelas: '12',
+              sekolah: 'SMA 33 Jakarta',
             ),
           ),
           child: const Text(
@@ -60,12 +198,12 @@ class ProfilePage<C extends ProfileController> extends GetView<C> {
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          Expanded(
+          const Expanded(
             child: Padding(
-              padding: const EdgeInsets.all(16.0),
+              padding: EdgeInsets.all(16.0),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
-                children: const [
+                children: [
                   Text(
                     'Fajrin Arrahman',
                     style: TextStyle(
@@ -104,6 +242,7 @@ class ProfilePage<C extends ProfileController> extends GetView<C> {
 
   Widget buildBody(BuildContext context) {
     return ListView(
+      padding: const EdgeInsets.all(16),
       children: [
         Container(
           margin: const EdgeInsets.symmetric(
@@ -177,9 +316,35 @@ class ProfilePage<C extends ProfileController> extends GetView<C> {
             ],
           ),
         ),
-        buildLogoutSection(
-          context: context,
-          onTap: () => onLogoutPressed(),
+        const SizedBox(
+          height: 20,
+        ),
+        Material(
+          type: MaterialType.transparency,
+          child: InkWell(
+            onTap: () {
+              onLogoutPressed();
+            },
+            child: Container(
+              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+              decoration: BoxDecoration(
+                color: Colors.white,
+                boxShadow: [
+                  BoxShadow(
+                      offset: const Offset(0, 0),
+                      blurRadius: 6,
+                      spreadRadius: 0,
+                      color: Colors.black.withOpacity(0.25)),
+                ],
+              ),
+              child: const Row(
+                children: [
+                  Icon(Icons.exit_to_app),
+                  Text('Keluar'),
+                ],
+              ),
+            ),
+          ),
         ),
       ],
     );
@@ -228,14 +393,14 @@ class ProfilePage<C extends ProfileController> extends GetView<C> {
         decoration: BoxDecoration(
           color: Colors.white,
           boxShadow: [
-            BoxShadow(color: Colors.black.withOpacity(0.25), blurRadius: 6, spreadRadius: 0, offset: Offset(0, 0))
+            BoxShadow(color: Colors.black.withOpacity(0.25), blurRadius: 6, spreadRadius: 0, offset: const Offset(0, 0))
           ],
         ),
         margin: const EdgeInsets.symmetric(horizontal: 8),
-        child: Padding(
-          padding: const EdgeInsets.all(8.0),
+        child: const Padding(
+          padding: EdgeInsets.all(8.0),
           child: Row(
-            children: const [
+            children: [
               Icon(
                 Icons.exit_to_app,
                 color: Color(0xffEB5757),
@@ -333,5 +498,37 @@ class ProfilePage<C extends ProfileController> extends GetView<C> {
     //   ),
     //   backgroundColor: Colors.white,
     // );
+  }
+}
+
+class IdentityRowWidget extends StatelessWidget {
+  final String label;
+  final String data;
+
+  const IdentityRowWidget({
+    super.key,
+    required this.label,
+    required this.data,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.stretch,
+      children: [
+        Text(
+          label,
+          style: TextStyle(
+            color: Colors.black.withOpacity(0.4),
+          ),
+        ),
+        Text(
+          data,
+          style: TextStyle(
+            color: Colors.black,
+          ),
+        ),
+      ],
+    );
   }
 }

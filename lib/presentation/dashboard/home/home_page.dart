@@ -19,18 +19,25 @@ class HomePage extends StatelessWidget {
     return ListView(
       padding: const EdgeInsets.all(20),
       children: [
-        const HomeProfileWidget(),
+        const HomeProfileWidget(name: 'Leo'),
         const HomeTopBannerWidget(),
         const HomeCoursesWidget(),
         Container(
           height: 100,
-          color: Colors.red,
-          child: const Text('Event Banners'),
-        ),
-        Container(
-          height: 100,
-          color: Colors.red,
-          child: const Text('Event Banners'),
+          width: double.infinity,
+          color: Colors.green,
+          child: ListView.builder(
+            scrollDirection: Axis.horizontal,
+            itemCount: 10,
+            itemBuilder: (context, index) {
+              return Container(
+                width: 200,
+                height: 100,
+                child: Image.network(
+                    'https://eduhero.widyaedu.com/assets/images/thumbnail/e5c07ce5e92384a7631331a509300b3d.png'),
+              );
+            },
+          ),
         ),
         Container(
           height: 100,

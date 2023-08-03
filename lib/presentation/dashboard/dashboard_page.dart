@@ -8,13 +8,13 @@ import 'profile/profile_page.dart';
 
 class DashboardPage extends GetView<DashboardController> {
   const DashboardPage({Key? key}) : super(key: key);
-
   @override
   Widget build(BuildContext context) {
-    return Obx(() {
-      int selectedIndex = controller.selectedNavIndexObs.value;
-      return SafeArea(
-        child: Scaffold(
+    return GetBuilder<DashboardController>(
+      builder: (controller) {
+        int selectedIndex = controller.selectedNavIndex;
+
+        return Scaffold(
           // body: _bodyList()[selectedIndex],
           body: IndexedStack(
             index: selectedIndex,
@@ -25,18 +25,17 @@ class DashboardPage extends GetView<DashboardController> {
             ],
           ),
           bottomNavigationBar: BottomNavigationBar(
-            currentIndex: selectedIndex,
             onTap: (index) {
               controller.navigateTo(index);
             },
-            items: const [
+            items: [
               BottomNavigationBarItem(
                 icon: Icon(Icons.home),
                 label: 'Home',
               ),
               BottomNavigationBarItem(
-                icon: Icon(Icons.account_balance_outlined),
-                label: 'Diskusi Soal',
+                icon: Icon(Icons.chat),
+                label: 'Discuss',
               ),
               BottomNavigationBarItem(
                 icon: Icon(Icons.person),
@@ -44,14 +43,14 @@ class DashboardPage extends GetView<DashboardController> {
               ),
             ],
           ),
-        ),
-      );
-    });
+        );
+      },
+    );
   }
 
   List<Widget> _bodyList() => [
-        const HomePage(),
-        const DiscussionPage(),
-        const ProfilePage(),
+        const HomePage(), // 0
+        const DiscussionPage(), // 1
+        const ProfilePage(), // 2
       ];
 }

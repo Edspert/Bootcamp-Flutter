@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-import '../../core/values/colors.dart';
 import '../../core/values/images.dart';
 
 class SplashPage extends StatelessWidget {
@@ -13,7 +12,7 @@ class SplashPage extends StatelessWidget {
     return Scaffold(
       backgroundColor: Color(0xFF3A7FD5),
       body: Center(
-        child: Image.asset('assets/images/img_edspert_logo_white.png'),
+        child: Image.asset(ImagesAssets.imageLogoWhitePng),
       ),
     );
   }

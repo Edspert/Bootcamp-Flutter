@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:elearning/data/model/course_response.dart';
 import 'package:elearning/presentation/course/course_list_controller.dart';
 import 'package:flutter/material.dart';
@@ -24,8 +25,12 @@ class CourseListPage extends GetView<CourseListController> {
           builder: (CourseListController courseController) {
             List<CourseData> courses = courseController.courseList;
 
-            return ListView.builder(
+            return ListView.separated(
+              padding: const EdgeInsets.all(16),
               itemCount: courses.length,
+              separatorBuilder: (context, index) => const SizedBox(
+                height: 15,
+              ),
               itemBuilder: (context, index) {
                 return InkWell(
                   onTap: () {
@@ -38,36 +43,33 @@ class CourseListPage extends GetView<CourseListController> {
                     );
                   },
                   child: Container(
-                    margin: EdgeInsets.symmetric(vertical: 7, horizontal: 18),
-                    padding: EdgeInsets.symmetric(horizontal: 18, vertical: 18),
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(10),
-                      color: Colors.lightBlue,
-                    ),
-                    child: Row(
-                      children: [
-                        Icon(Icons.abc),
-                        SizedBox(
-                          width: 20,
+                    decoration: BoxDecoration(color: Colors.white, borderRadius: BorderRadius.circular(10)),
+                    padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
+                    child: Row(children: [
+                      CachedNetworkImage(
+                        imageUrl: courses[index].urlCover ?? '',
+                        height: 80,
+                        width: 80,
+                        placeholder: (context, url) => const CircularProgressIndicator(),
+                        errorWidget: (context, url, error) => const Icon(Icons.book, size: 80),
+                      ),
+                      const SizedBox(
+                        width: 10,
+                      ),
+                      Expanded(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(courses[index].courseName ?? ''),
+                            Text('${courses[index].jumlahDone}/${courses[index].jumlahMateri} Paket latihan soal'),
+                            LinearProgressIndicator(
+                              value: (courses[index].jumlahDone ?? 0) /
+                                  (courses[index].jumlahMateri == 0 ? 1 : courses[index].jumlahMateri!),
+                            ),
+                          ],
                         ),
-                        Expanded(
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(courses[index].courseName ?? ''),
-                              if (courses[index].jumlahMateri! > 0)
-                                Text(
-                                  '${courses[index].jumlahDone}/${courses[index].jumlahMateri} Paket Latihan Soal',
-                                ),
-                              if (courses[index].jumlahMateri! > 0)
-                                LinearProgressIndicator(
-                                  value: (courses[index].jumlahDone!) / (courses[index].jumlahMateri!),
-                                ),
-                            ],
-                          ),
-                        ),
-                      ],
-                    ),
+                      )
+                    ]),
                   ),
                 );
                 return ListTile(

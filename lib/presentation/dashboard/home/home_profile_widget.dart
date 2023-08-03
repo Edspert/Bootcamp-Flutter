@@ -1,22 +1,27 @@
 import 'package:flutter/material.dart';
 
 class HomeProfileWidget extends StatelessWidget {
-  const HomeProfileWidget({super.key});
+  final String name;
+  const HomeProfileWidget({
+    super.key,
+    required this.name,
+  });
 
   @override
   Widget build(BuildContext context) {
     return Container(
       height: 80,
-      color: Colors.green,
+      color: Colors.lightGreen,
       padding: const EdgeInsets.symmetric(horizontal: 16),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              const Text('asdfasdf'),
-              const Text('asdfasdf'),
+              Text('Hai, $name'),
+              const Text('Selamat Datang!'),
             ],
           ),
           const Icon(Icons.ad_units),

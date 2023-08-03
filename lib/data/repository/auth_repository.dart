@@ -20,9 +20,12 @@ class AuthRepositoryImpl implements AuthRepository {
   @override
   Future<UserData?> getUserByEmail({required String email}) async {
     try {
+      Map<String, dynamic> params = {
+        "email": email,
+      };
       final result = await dioClient.get(
         Urls.users,
-        queryParameters: {"email": email},
+        queryParameters: params,
       );
 
       UserResponse res = UserResponse.fromJson(result);

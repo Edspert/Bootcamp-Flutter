@@ -1,6 +1,7 @@
 import 'package:elearning/core/values/colors.dart';
 import 'package:elearning/presentation/exercise/list/exercise_list_controller.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 
 import '../../../data/model/exercise_list_response.dart';
@@ -8,8 +9,8 @@ import '../../../routes/routes.dart';
 
 /// Arguments untuk dibawa saat pindah/navigate ke halaman ExerciseListPage
 class ExerciseListPageArgs {
-  final String courseId;
-  final String courseName;
+  final String courseId; // Buat get data dari API exercises
+  final String courseName; // Buat ditampilkan Appbar
 
   const ExerciseListPageArgs({
     required this.courseId,
@@ -48,13 +49,11 @@ class _ExerciseListPageState extends State<ExerciseListPage> {
                       child: Text('Yah, Paket tidak tersedia'),
                     )
                   : GridView.builder(
-                      padding: const EdgeInsets.all(20),
-                      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                         crossAxisCount: 2,
                         childAspectRatio: 153 / 96,
-                        crossAxisSpacing: 16,
-                        mainAxisSpacing: 12,
                       ),
+                      padding: const EdgeInsets.all(20),
                       itemCount: exercises.length,
                       itemBuilder: (context, index) {
                         return InkWell(

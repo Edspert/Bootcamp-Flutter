@@ -17,7 +17,7 @@ class HomeController extends GetxController {
 
   // Currently set to static
   String majorName = 'IPA';
-  int maxHomeCourseCount = 5;
+  int maxHomeCourseCount = 4;
 
   @override
   void onInit() {

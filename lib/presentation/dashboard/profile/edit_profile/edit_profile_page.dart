@@ -8,10 +8,15 @@ class EditProfileArgs {
   final String name;
   final String email;
   final String jenisKelamin;
+  final String kelas;
+  final String sekolah;
+
   EditProfileArgs({
     required this.name,
     required this.email,
     required this.jenisKelamin,
+    required this.kelas,
+    required this.sekolah,
   });
 }
 

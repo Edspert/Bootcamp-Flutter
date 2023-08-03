@@ -62,7 +62,7 @@ class ExerciseQuestionsFormController extends GetxController {
   }
 
   /// Answers
-  List<QuestionAnswer> questionAnswers = List.empty(growable: true);
+  List<QuestionAnswer> questionAnswers = List.empty(growable: true); // []
   int activeQuestionIndex = 0;
   String activeQuestionId = '';
   bool submitAnswerLoading = false;
@@ -78,6 +78,7 @@ class ExerciseQuestionsFormController extends GetxController {
   }
 
   void updateAnswerToQuestion({required String questionId, required String answer}) {
+    /// Check dulu, apakah jawabannya ada?
     if (questionAnswers.any((element) => element.questionId == questionId)) {
       int indexToUpdate = questionAnswers.indexWhere((element) => element.questionId == questionId);
       questionAnswers[indexToUpdate] = QuestionAnswer(questionId: questionId, answer: answer);
@@ -95,8 +96,10 @@ class ExerciseQuestionsFormController extends GetxController {
       update();
 
       if (questionAnswers.length == 10) {
-        List<String> questionIds = questionAnswers.map((e) => e.questionId).toList();
+        List<String> questionIds = questionAnswers.map((element) => element.questionId).toList();
+        // ["Q1", "Q2", ....]
         List<String> answers = questionAnswers.map((e) => e.answer).toList();
+        // ["A", "C", ....]
 
         /// Submit Answer API Call
         bool submitAnswersResult = await courseRepository.submitAnswers(

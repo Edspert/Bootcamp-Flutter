@@ -9,17 +9,24 @@ class HomeTopBannerWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       height: 150,
-      decoration: BoxDecoration(color: AppColors.primary, borderRadius: BorderRadius.circular(20)),
+      decoration: BoxDecoration(
+        color: AppColors.primary,
+        borderRadius: BorderRadius.circular(20),
+      ),
       child: Stack(
         children: [
-          const Positioned(
-            top: 26,
+          Positioned(
             left: 20,
-            child: Text('Mau kerjain latihan soal apa hari ini?'),
+            top: 26,
+            child: SizedBox(
+              child: Text(
+                'Mau kerjain\nlatihan soal\napa hari ini?',
+              ),
+            ),
           ),
           Positioned(
-            bottom: 0,
             right: 0,
+            bottom: 0,
             child: Image.asset('assets/images/img_edspert_logo_white.png'),
           ),
         ],
